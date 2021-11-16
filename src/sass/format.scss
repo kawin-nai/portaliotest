@@ -70,7 +70,11 @@ body {
   margin-left:auto;
   margin-right: auto;
 }
-
+.text-gradient {
+  background: linear-gradient(to right, #30CFD0, #c43ad6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .card {
   font-family: Oxygen, sans-serif;
   margin: 2rem;
