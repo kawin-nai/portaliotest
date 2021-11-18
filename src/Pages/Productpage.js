@@ -12,7 +12,7 @@ import {
   child,
   get,
 } from "@firebase/database";
-import { MetaMaskProvider } from "metamask-react";
+import Connector from "../Wallet/Connector";
 
 const firebaseConfig = {
   apiKey: "AIzaSyByQWcijM778LTJf2B0jdv87BZjmi1cW1g",
@@ -48,6 +48,8 @@ function Productpage() {
     <div>
       <div className="topbar">
         <Form />
+        <br />
+        <Connector />
       </div>
       <h2>Products</h2>
       <div className="wrapper">
