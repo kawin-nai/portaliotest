@@ -1,15 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/database'
+import { getDatabase } from "@firebase/database";
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,18 +23,21 @@ const firebaseConfig = {
   storageBucket: "portal-be7b2.appspot.com",
   messagingSenderId: "468751414945",
   appId: "1:468751414945:web:c857565878d1a07e7262e0",
-  measurementId: "G-PQGDMPGJMR"
+  measurementId: "G-PQGDMPGJMR",
+  databaseURL:
+    "https://portal-be7b2-default-rtdb.asia-southeast1.firebasedatabase.app",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+const db = getDatabase(app);
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
