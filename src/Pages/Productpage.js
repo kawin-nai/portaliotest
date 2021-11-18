@@ -1,12 +1,13 @@
 import React from 'react'
 import Productcard from '../Components/Productcard'
 import '../sass/format.scss'
-
+import Form from '../Components/Form'
 function Productpage() {
     return (
         <div>
             <div className="topbar">
                 <button className="topbarbutton">Create new project</button>
+                <Form />
             </div>
             <h2>Products</h2>
             <div className="wrapper">
