@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { Database, getDatabase, ref, set } from "@firebase/database";
+import { Database, getDatabase, ref, set, child } from "@firebase/database";
 import "../sass/format.scss";
 // import firebase from 'firebase'
 
@@ -51,14 +51,17 @@ function Form() {
     <div className="inputField">
       <br />
       <label>Title: </label>
-      <input type="text" onChange={createTitle}></input>
+      <input type="text" className="inputfield" onChange={createTitle}></input>
       <br />
       <label>Description: </label>
-      <input type="text" onChange={createDesc}></input>
+      <input type="text" className="inputfield" onChange={createDesc}></input>
       <br />
       <label>Image URL: </label>
-      <input type="text" onChange={createImgurl}></input>
-      <button onClick={createEntry}>Commit</button>
+      <input type="text" className="inputfield" onChange={createImgurl}></input>
+      <br />
+      <button onClick={createEntry} className="topbarbutton">
+        Commit
+      </button>
     </div>
   );
 }

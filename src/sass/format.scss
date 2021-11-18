@@ -33,13 +33,13 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 16rem));
   gap: 2rem;
-  margin:2rem;
+  margin: 2rem;
   padding: 100;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left:auto;
+  margin-left: auto;
   margin-right: auto;
 
   &button {
@@ -67,11 +67,11 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(30rem, 16rem));
   gap: 2rem;
   justify-content: center;
-  margin-left:auto;
+  margin-left: auto;
   margin-right: auto;
 }
 .text-gradient {
-  background: linear-gradient(to right, #30CFD0, #c43ad6);
+  background: linear-gradient(to right, #30cfd0, #c43ad6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
