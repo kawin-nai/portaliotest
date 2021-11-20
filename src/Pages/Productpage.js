@@ -13,6 +13,7 @@ import {
   get,
 } from "@firebase/database";
 import Connector from "../Wallet/Connector";
+import Web3 from "web3";
 
 const firebaseConfig = {
   apiKey: "AIzaSyByQWcijM778LTJf2B0jdv87BZjmi1cW1g",
@@ -45,8 +46,18 @@ get(child(dbref, `ProductLists/${userId}`))
 
 function Productpage() {
   const [isConnected, setIsConnected] = useState(false);
+  const [currentAccount, setCurrentAccount] = useState("");
+  const providerUrl = process.env.PROVIDER_URL || "http://localhost:3000";
 
-  const login = () => {
+  const login = async () => {
+    // const web3 = new Web3(providerUrl);
+    // const accounts = await web3.eth.getAccounts();
+    // if (accounts.length === 0) {
+    //   console.log("Please connect to MetaMask");
+    // } else if (accounts[0] !== currentAccount) {
+    //   setCurrentAccount(accounts[0]);
+
+    // }
     setIsConnected(true);
   };
 
@@ -58,9 +69,14 @@ function Productpage() {
     <div>
       <div className="topbar">
         <Form />
-        {!isConnected && <Connector onLogin={login} onLogout={logout} />}
-        {isConnected && <p>Connected</p>}
       </div>
+      {!isConnected && <Connector onLogin={login} onLogout={logout} />}
+      {isConnected && (
+        <div className="topbar">
+          <p className="connected">Connected</p>
+        </div>
+      )}
+      {currentAccount}
       <h2>Products</h2>
       <div className="wrapper">
         <Productcard

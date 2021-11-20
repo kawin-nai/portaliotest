@@ -78,6 +78,20 @@ body {
       color: white;
     }
   }
+
+  .connected {
+    display: grid;
+    padding: 1rem;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 1rem;
+    border: 2px solid $clr-primary;
+    background: transparent;
+    color: $clr-primary;
+    border-radius: $radius;
+    transition: background 100ms ease-in, color 100ms ease-in;
+  }
 }
 
 .wrapper {
