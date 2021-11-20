@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Productcard from "../Components/Productcard";
 import "../sass/format.scss";
 import Form from "../Components/Form";
@@ -44,12 +44,22 @@ get(child(dbref, `ProductLists/${userId}`))
   });
 
 function Productpage() {
+  const [isConnected, setIsConnected] = useState(false);
+
+  const login = () => {
+    setIsConnected(true);
+  };
+
+  const logout = () => {
+    setIsConnected(false);
+  };
+
   return (
     <div>
       <div className="topbar">
         <Form />
-        <br />
-        <Connector />
+        {!isConnected && <Connector onLogin={login} onLogout={logout} />}
+        {isConnected && <p>Connected</p>}
       </div>
       <h2>Products</h2>
       <div className="wrapper">

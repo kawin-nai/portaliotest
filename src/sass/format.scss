@@ -29,6 +29,25 @@ body {
   margin: 2rem;
 }
 
+.connectbutton {
+  padding: 1rem;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 1rem;
+  border: 2px solid $clr-primary;
+  background: transparent;
+  color: $clr-primary;
+  border-radius: $radius;
+  transition: background 100ms ease-in, color 100ms ease-in;
+  cursor: pointer;
+
+  &:hover {
+    background: $clr-primary;
+    color: white;
+  }
+}
+
 .topbar {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 16rem));
@@ -54,11 +73,10 @@ body {
     border-radius: $radius;
     transition: background 100ms ease-in, color 100ms ease-in;
     cursor: pointer;
-  }
-
-  &:hover &button {
-    background: $clr-primary;
-    color: white;
+    &:hover {
+      background: $clr-primary;
+      color: white;
+    }
   }
 }
 
