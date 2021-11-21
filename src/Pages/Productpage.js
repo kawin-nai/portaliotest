@@ -73,7 +73,7 @@ function Productpage() {
       {!isConnected && <Connector onLogin={login} onLogout={logout} />}
       {isConnected && (
         <div className="topbar">
-          <p className="connected">Connected</p>
+          <p>Connected</p>
         </div>
       )}
       {currentAccount}
