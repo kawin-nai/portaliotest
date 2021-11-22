@@ -6,22 +6,9 @@ import "../sass/format.scss";
 function Connector(props) {
   const providerUrl = process.env.PROVIDER_URL || "http://localhost:3000";
   const [isConnecting, setIsConnecting] = useState(false);
-  // useEffect(() => {
-  //   const web3 = new Web3(providerUrl);
+  // const [isLogin, setIsLogin] = useState(false);
 
-  //   let provider = window.ethereum;
-
-  //   if (typeof window.ethereum !== "undefined") {
-  //     provider
-  //       .request({ method: "eth_requestAccounts" })
-  //       .then((accounts) => {
-  //         console.log(accounts);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // }, []);
+  // setIsLogin(props.loginState());
 
   const loginHandler = async () => {
     const web3 = new Web3(providerUrl);
@@ -42,6 +29,19 @@ function Connector(props) {
   const logoutHandler = () => {
     props.onLogout();
   };
+
+  // return !isLogin ? (
+  //   <div>
+  //     <button onClick={loginHandler} className="connectbutton">
+  //       {!isConnecting && "Connect to Metamask"}
+  //       {isConnecting && "Connecting"}
+  //     </button>
+  //   </div>
+  // ) : (
+  //   <div>
+  //     <button onClick={logoutHandler}>Log out</button>
+  //   </div>
+  // );
 
   return (
     <div>

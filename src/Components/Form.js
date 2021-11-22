@@ -26,6 +26,7 @@ function Form() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [imgurl, setImgurl] = useState("");
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const createTitle = (e) => {
     setTitle(e.target.value);
@@ -48,7 +49,7 @@ function Form() {
   };
 
   return (
-    <div className="inputField">
+    <div className="modal">
       <br />
       <label>Title: </label>
       <input type="text" className="inputfield" onChange={createTitle}></input>

@@ -14,6 +14,7 @@ import {
 } from "@firebase/database";
 import Connector from "../Wallet/Connector";
 import Web3 from "web3";
+import Backdrop from "../Components/Backdrop";
 
 const firebaseConfig = {
   apiKey: "AIzaSyByQWcijM778LTJf2B0jdv87BZjmi1cW1g",
@@ -29,24 +30,24 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
 const dbref = ref(getDatabase());
 const userId = "";
-get(child(dbref, `ProductLists/${userId}`))
-  .then((snapshot) => {
-    if (snapshot.exists()) {
-      console.log(snapshot.val());
-    } else {
-      console.log("No data available");
-    }
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+// get(child(dbref, `ProductLists/${userId}`))
+//   .then((snapshot) => {
+//     if (snapshot.exists()) {
+//       console.log(snapshot.val());
+//     } else {
+//       console.log("No data available");
+//     }
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });
 
 function Productpage() {
   const [isConnected, setIsConnected] = useState(false);
   const [currentAccount, setCurrentAccount] = useState("");
+  const [formIsOpen, setFormIsOpen] = useState(false);
   const providerUrl = process.env.PROVIDER_URL || "http://localhost:3000";
 
   const login = async () => {
@@ -65,18 +66,38 @@ function Productpage() {
     setIsConnected(false);
   };
 
+  const addProductHandler = () => {
+    setFormIsOpen(true);
+  };
+
+  const closeFormHandler = () => {
+    setFormIsOpen(false);
+  };
+
   return (
     <div>
       <div className="topbar">
-        <Form />
+        <button className="connectbutton" onClick={addProductHandler}>
+          Add Product
+        </button>
+        {formIsOpen && <Form />}
+        {formIsOpen && <Backdrop onClick={closeFormHandler} />}
       </div>
-      {!isConnected && <Connector onLogin={login} onLogout={logout} />}
+      {!isConnected && (
+        <Connector
+          onLogin={login}
+          onLogout={logout}
+          // loginState={getLoginState}
+        />
+      )}
       {isConnected && (
-        <div className="topbar">
+        <div>
           <p>Connected</p>
+          <button onClick={logout} className="connectbutton">
+            Log out
+          </button>
         </div>
       )}
-      {currentAccount}
       <h2>Products</h2>
       <div className="wrapper">
         <Productcard
