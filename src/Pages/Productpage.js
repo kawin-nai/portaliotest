@@ -80,7 +80,7 @@ function Productpage() {
         <button className="connectbutton" onClick={addProductHandler}>
           Add Product
         </button>
-        {formIsOpen && <Form />}
+        {formIsOpen && <Form onClick={closeFormHandler} />}
         {formIsOpen && <Backdrop onClick={closeFormHandler} />}
       </div>
       {!isConnected && (

@@ -22,7 +22,7 @@ const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 const db = getDatabase();
 
-function Form() {
+function Form(props) {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [imgurl, setImgurl] = useState("");
@@ -46,6 +46,7 @@ function Form() {
       Desc: desc,
       Image: imgurl,
     });
+    props.onClick();
   };
 
   return (
