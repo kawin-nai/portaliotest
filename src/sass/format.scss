@@ -47,6 +47,19 @@ $radius: 0.2rem;
   left: calc(50% - 15rem);
 }
 
+.mainpage {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  background-color: white;
+  padding: 1rem;
+  text-align: center;
+  width: 30rem;
+  z-index: 10;
+  position: fixed;
+  top: 20vh;
+  left: calc(50% - 15rem);
+}
+
 body {
   font-family: Oxygen, sans-serif;
   margin: 2rem;
@@ -69,6 +82,20 @@ body {
     background: $clr-primary;
     color: white;
   }
+}
+
+.fakeconnectbutton {
+  padding: 1rem;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 1rem;
+  border: 2px solid $clr-primary;
+  background: transparent;
+  color: $clr-primary;
+  border-radius: $radius;
+  transition: background 100ms ease-in, color 100ms ease-in;
+  // cursor: pointer;
 }
 
 .topbar {
