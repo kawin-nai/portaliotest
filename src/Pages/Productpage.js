@@ -15,6 +15,7 @@ import {
 import Connector from "../Wallet/Connector";
 import Web3 from "web3";
 import Backdrop from "../Components/Backdrop";
+import data from "./data.json";
 
 const firebaseConfig = {
   apiKey: "AIzaSyByQWcijM778LTJf2B0jdv87BZjmi1cW1g",
@@ -50,6 +51,8 @@ function Productpage() {
   const [formIsOpen, setFormIsOpen] = useState(false);
   const providerUrl = process.env.PROVIDER_URL || "http://localhost:3000";
 
+  const arr = [];
+
   const login = async () => {
     // const web3 = new Web3(providerUrl);
     // const accounts = await web3.eth.getAccounts();
@@ -72,6 +75,20 @@ function Productpage() {
 
   const closeFormHandler = () => {
     setFormIsOpen(false);
+  };
+
+  const getJSON = (products) => {
+    while (arr.length > 0) {
+      arr.pop();
+    }
+    // console.log(products);
+    for (let val in products) {
+      // console.log(val, products[val]);
+      arr.push(products[val]);
+      // createCard(products[val]);
+    }
+    console.log(arr);
+    // return products.map(this.createCard);
   };
 
   return (
@@ -115,31 +132,16 @@ function Productpage() {
           title="Cookies"
           desc="This is a cookie"
         />
-        <Productcard
-          img="https://images.unsplash.com/photo-1637002058121-7f3fde498f16?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=774&q=80"
-          title="Cookies"
-          desc="This is a cookie"
-        />
-        <Productcard
-          img="https://images.unsplash.com/photo-1637002058121-7f3fde498f16?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=774&q=80"
-          title="Cookies"
-          desc="This is a cookie"
-        />
-        <Productcard
-          img="https://images.unsplash.com/photo-1637002058121-7f3fde498f16?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=774&q=80"
-          title="Cookies"
-          desc="This is a cookie"
-        />
-        <Productcard
-          img="https://images.unsplash.com/photo-1637002058121-7f3fde498f16?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=774&q=80"
-          title="Cookies"
-          desc="This is a cookie"
-        />
-        <Productcard
-          img="https://images.unsplash.com/photo-1637002058121-7f3fde498f16?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=774&q=80"
-          title="Cookies"
-          desc="This is a cookie"
-        />
+        {getJSON(data.products)}
+        {arr.map((arrdetail, index) => {
+          return (
+            <Productcard
+              img={arrdetail.Image}
+              title={arrdetail.Title}
+              desc={arrdetail.Desc}
+            />
+          );
+        })}
       </div>
     </div>
   );

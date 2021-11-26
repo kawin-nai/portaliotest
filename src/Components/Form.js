@@ -41,11 +41,13 @@ function Form(props) {
   };
 
   const createEntry = () => {
-    set(ref(db, "ProductLists/" + title), {
-      Title: title,
-      Desc: desc,
-      Image: imgurl,
-    });
+    if (title !== "" && desc !== "" && imgurl !== "") {
+      set(ref(db, "ProductLists/" + title), {
+        Title: title,
+        Desc: desc,
+        Image: imgurl,
+      });
+    }
     props.onClick();
   };
 
