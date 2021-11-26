@@ -19,7 +19,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
 const db = getDatabase();
 
 function Form(props) {
@@ -49,6 +48,7 @@ function Form(props) {
       });
     }
     props.onClick();
+    // location.reload();
   };
 
   return (

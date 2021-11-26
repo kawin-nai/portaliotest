@@ -31,27 +31,18 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const dbref = ref(getDatabase());
-const userId = "";
-// get(child(dbref, `ProductLists/${userId}`))
-//   .then((snapshot) => {
-//     if (snapshot.exists()) {
-//       console.log(snapshot.val());
-//     } else {
-//       console.log("No data available");
-//     }
-//   })
-//   .catch((error) => {
-//     console.error(error);
-//   });
+const db = getDatabase();
+const dbRef = ref(db);
 
 function Productpage() {
+  const [ListOfProduct, setListOfProduct] = useState();
   const [isConnected, setIsConnected] = useState(false);
   const [currentAccount, setCurrentAccount] = useState("");
   const [formIsOpen, setFormIsOpen] = useState(false);
   const providerUrl = process.env.PROVIDER_URL || "http://localhost:3000";
 
   const arr = [];
+  const databasearr = [];
 
   const login = async () => {
     // const web3 = new Web3(providerUrl);
@@ -77,19 +68,19 @@ function Productpage() {
     setFormIsOpen(false);
   };
 
-  const getJSON = (products) => {
-    while (arr.length > 0) {
-      arr.pop();
-    }
-    // console.log(products);
-    for (let val in products) {
-      // console.log(val, products[val]);
-      arr.push(products[val]);
-      // createCard(products[val]);
-    }
-    console.log(arr);
-    // return products.map(this.createCard);
+  const getAllData = () => {
+    get(child(dbRef, "ProductLists")).then((snapshot) => {
+      var allproducts = [];
+
+      snapshot.forEach((childSnapshot) => {
+        allproducts.push(childSnapshot.val());
+      });
+
+      setListOfProduct(allproducts);
+    });
   };
+
+  window.onload = getAllData;
 
   return (
     <div>
@@ -132,16 +123,18 @@ function Productpage() {
           title="Cookies"
           desc="This is a cookie"
         />
-        {getJSON(data.products)}
-        {arr.map((arrdetail, index) => {
-          return (
-            <Productcard
-              img={arrdetail.Image}
-              title={arrdetail.Title}
-              desc={arrdetail.Desc}
-            />
-          );
-        })}
+        {ListOfProduct
+          ? ListOfProduct.map((databasearrdetail, index) => {
+              // console.log("in main", databasearrdetail);
+              return (
+                <Productcard
+                  desc={databasearrdetail.Desc}
+                  img={databasearrdetail.Image}
+                  title={databasearrdetail.Title}
+                />
+              );
+            })
+          : ""}
       </div>
     </div>
   );
