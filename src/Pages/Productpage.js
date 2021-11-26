@@ -37,7 +37,6 @@ function Productpage() {
   const [ListOfProduct, setListOfProduct] = useState();
   const [isConnected, setIsConnected] = useState(false);
   const [formIsOpen, setFormIsOpen] = useState(false);
-  const [mainPageProps, setMainPageProps] = useState();
   const [mainPageImg, setMainPageImg] = useState("");
   const [mainPageTitle, setMainPageTitle] = useState("");
   const [mainPageDesc, setMainPageDesc] = useState("");
@@ -112,8 +111,7 @@ function Productpage() {
       <h2>Products</h2>
       <div className="wrapper">
         {ListOfProduct
-          ? ListOfProduct.map((databasearrdetail, index) => {
-              // console.log("in main", databasearrdetail);
+          ? ListOfProduct.map((databasearrdetail) => {
               return (
                 <Productcard
                   desc={databasearrdetail.Desc}

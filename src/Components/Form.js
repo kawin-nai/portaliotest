@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { Database, getDatabase, ref, set, child } from "@firebase/database";
 import "../sass/format.scss";
-// import firebase from 'firebase'
 
 const firebaseConfig = {
   apiKey: "AIzaSyByQWcijM778LTJf2B0jdv87BZjmi1cW1g",
@@ -48,7 +46,6 @@ function Form(props) {
       });
     }
     props.onClick();
-    // location.reload();
   };
 
   return (
