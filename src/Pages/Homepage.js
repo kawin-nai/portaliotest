@@ -16,6 +16,9 @@ function Homepage() {
           </Link>
         </div>
       </nav>
+      <div className="main-body">
+        <h1 id="main-title">Portal</h1>
+      </div>
     </div>
   );
 }

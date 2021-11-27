@@ -1,10 +1,6 @@
 $clr-primary: #0086e8;
 $radius: 0.2rem;
 
-// .home-navbar {
-//   display: flex;
-// }
-
 #right-button {
   display: flex;
   justify-content: flex-end;
@@ -40,4 +36,9 @@ $radius: 0.2rem;
 
 .spacer {
   flex: 1;
+}
+
+#main-title {
+  text-align: center;
+  font-size: 3em;
 }
