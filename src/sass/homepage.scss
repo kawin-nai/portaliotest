@@ -1,0 +1,43 @@
+$clr-primary: #0086e8;
+$radius: 0.2rem;
+
+// .home-navbar {
+//   display: flex;
+// }
+
+#right-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.left-logo {
+  display: flex;
+  justify-content: flex-end;
+}
+.connectbutton {
+  padding: 1rem;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 1rem;
+  border: 2px solid $clr-primary;
+  background: transparent;
+  color: $clr-primary;
+  border-radius: $radius;
+  transition: background 100ms ease-in, color 100ms ease-in;
+  cursor: pointer;
+
+  &:hover {
+    background: $clr-primary;
+    color: white;
+  }
+}
+
+.spacer {
+  flex: 1;
+}

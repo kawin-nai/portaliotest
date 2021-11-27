@@ -83,23 +83,23 @@ function Productpage() {
     });
   };
 
-  window.onload = getAllData;
-
   return (
     <div>
-      <div className="topbar">
+      {getAllData()}
+      <div className="navbar-container">
         <button className="connectbutton" onClick={addProductHandler}>
           Add Product
         </button>
+        <div className="spacer"></div>
         {formIsOpen && <Form onClick={closeFormHandler} />}
         {formIsOpen && <Backdrop onClick={closeFormHandler} />}
+        {!isConnected && <Connector onLogin={login} onLogout={logout} />}
+        {isConnected && (
+          <div>
+            <button className="fakeconnectbutton">Connected</button>
+          </div>
+        )}
       </div>
-      {!isConnected && <Connector onLogin={login} onLogout={logout} />}
-      {isConnected && (
-        <div>
-          <button className="fakeconnectbutton">Connected</button>
-        </div>
-      )}
       {mainPageShown && (
         <Productmain
           img={mainPageImg}

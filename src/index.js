@@ -11,6 +11,7 @@ import { getDatabase } from "@firebase/database";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
+import { BrowserRouter } from "react-router-dom";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -34,9 +35,9 @@ const analytics = getAnalytics(app);
 const db = getDatabase(app);
 
 ReactDOM.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <App />
-  </React.StrictMode>,
+  </BrowserRouter>,
   document.getElementById("root")
 );
 

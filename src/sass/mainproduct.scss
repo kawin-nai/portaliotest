@@ -1,0 +1,28 @@
+$clr-primary: #0086e8;
+$radius: 0.2rem;
+
+.mainpage {
+  display: flex;
+  //   justify-content: flex-start;
+  left: calc(50% - 25rem);
+  width: 50rem;
+}
+
+.connectbutton {
+  padding: 1rem;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1rem;
+  //   margin: 1rem;
+  border: 2px solid $clr-primary;
+  background: transparent;
+  color: $clr-primary;
+  border-radius: $radius;
+  transition: background 100ms ease-in, color 100ms ease-in;
+  cursor: pointer;
+
+  &:hover {
+    background: $clr-primary;
+    color: white;
+  }
+}
