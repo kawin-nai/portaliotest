@@ -33,14 +33,19 @@ $radius: 0.2rem;
 }
 .right-content {
   width: 44%;
+  margin-left: 20px;
+  margin-bottom: 5px;
   padding-left: 20px;
   padding-right: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   text-align: left;
 }
 
+.camp-progress {
+  margin-top: 50px;
+}
 .camp-title {
   line-height: 35px;
   font-size: 26px;
@@ -74,7 +79,6 @@ $radius: 0.2rem;
 .contribute-section {
   display: flex;
   align-items: center;
-  margin-top: 35px;
 }
 
 .contr-active {
@@ -106,7 +110,6 @@ textarea {
 }
 
 .submit-btn {
-  margin: 20px 0px;
   font-family: "Libre Franklin", sans-serif;
   font-weight: 500;
   font-size: 14px;
@@ -133,7 +136,6 @@ textarea {
 .camp-goal {
   font-weight: 400;
   color: #6a6a6a;
-  margin-top: 10px;
   font-size: 16px;
 }
 

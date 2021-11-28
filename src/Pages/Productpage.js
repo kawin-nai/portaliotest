@@ -15,6 +15,7 @@ import Connector from "../Wallet/Connector";
 import Web3 from "web3";
 import Backdrop from "../Components/Backdrop";
 import Productmain from "../Components/Productmain";
+import { BrowserRouter as Link } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: "AIzaSyByQWcijM778LTJf2B0jdv87BZjmi1cW1g",

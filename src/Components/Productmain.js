@@ -16,9 +16,10 @@ function Productmain(props) {
           </div>
           <div className="camp-goal">
             <span>Total Goal: 10000 HKD</span>
+            <br />
+            <span>Min Goal: 2500 HKD</span>
           </div>
         </div>
-        <p></p>
         <div className="contribute-section">
           <div className="contr-active">
             <form className="contribute-form">
