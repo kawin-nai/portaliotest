@@ -1,6 +1,14 @@
 $clr-primary: #0086e8;
 $radius: 0.2rem;
 
+.home-page {
+  background-image: url("bg.jpg");
+  position: relative;
+  min-width: 100%;
+  min-height: 100%;
+  background-size: cover;
+  background-position: center;
+}
 #right-button {
   display: flex;
   justify-content: flex-end;
@@ -41,4 +49,24 @@ $radius: 0.2rem;
 #main-title {
   text-align: center;
   font-size: 3em;
+}
+
+.bg {
+  padding: 20em;
+  background-image: url("portalicon.png");
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: center;
+  z-index: 0;
+  border: 2px solid black;
+}
+// .footer {
+//   height: 100px;
+//   position: relative;
+// }
+
+.footer-content {
+  margin: 30px;
+  display: flex;
+  flex-direction: row;
 }

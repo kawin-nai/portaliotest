@@ -5,7 +5,7 @@ import "../sass/homepage.scss";
 
 function Homepage() {
   return (
-    <div>
+    <div className="home-page">
       <nav className="home-navbar">
         <div className="navbar-container">
           <p className="connectbutton">Logo Placeholder</p>
@@ -18,6 +18,14 @@ function Homepage() {
       </nav>
       <div className="main-body">
         <h1 id="main-title">Portal</h1>
+      </div>
+      <div className="bg"></div>
+      <div className="footer">
+        <div className="footer-content">
+          <p>a</p>
+          <p>a</p>
+          <p>a</p>
+        </div>
       </div>
     </div>
   );

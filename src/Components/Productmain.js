@@ -30,11 +30,12 @@ function Productmain(props) {
                 pattern="^\d+([,.][0-9]{1,2})?$"
                 placeholder="Donation Amount"
               />
-              <input
+              <button className="submit-btn cntr-btn">Contribute</button>
+              {/* <input
                 type="submit"
                 class="submit-btn cntr-btn"
                 value="Contribute"
-              />
+              /> */}
             </form>
           </div>
         </div>
