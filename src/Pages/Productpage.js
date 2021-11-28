@@ -8,7 +8,7 @@ import Connector from "../Wallet/Connector";
 import Backdrop from "../Components/Backdrop";
 import Productmain from "../Components/Productmain";
 import { ethers } from "ethers";
-
+import portalcontract from "../Wallet/portalcontract.json";
 const firebaseConfig = {
   apiKey: "AIzaSyByQWcijM778LTJf2B0jdv87BZjmi1cW1g",
   authDomain: "portal-be7b2.firebaseapp.com",
@@ -27,7 +27,7 @@ const db = getDatabase();
 const dbRef = ref(db);
 
 function Productpage() {
-  const contractAddress = "0x25b72301a76dc5a12dB4082c3D9063c3A4F5D78f";
+  const contractAddress = "0xAA95EBE5BF44A32be5Ec19E7CDd300D5B12d8fA8";
   const [ListOfProduct, setListOfProduct] = useState();
   const [isConnected, setIsConnected] = useState(false);
   const [formIsOpen, setFormIsOpen] = useState(false);
@@ -65,12 +65,27 @@ function Productpage() {
     const tempSigner = tempProvider.getSigner();
     setSigner(tempSigner);
 
-    // const tempContract = new ethers.Contract(
-    //   contractAddress,
-    //   placeholderContract,
-    //   tempSigner
-    // );
-    // setContract(tempContract);
+    // const daiAbi = [
+    //   // Some details about the token
+    //   "function name() view returns (string)",
+    //   "function symbol() view returns (string)",
+
+    //   // Get the account balance
+    //   "function balanceOf(address) view returns (uint)",
+
+    //   // Send some of your tokens to someone else
+    //   "function transfer(address to, uint amount)",
+
+    //   // An event triggered whenever anyone transfers to someone else
+    //   "event Transfer(address indexed from, address indexed to, uint amount)",
+    // ];
+
+    const tempContract = new ethers.Contract(
+      contractAddress,
+      portalcontract,
+      tempSigner
+    );
+    setContract(tempContract);
   };
 
   const addProductHandler = () => {
@@ -106,7 +121,7 @@ function Productpage() {
       {getAllData()}
       <div className="navbar-container">
         <button className="connectbutton" onClick={addProductHandler}>
-          Add Product
+          Create Project
         </button>
         <div className="spacer"></div>
         {formIsOpen && <Form onClick={closeFormHandler} />}
@@ -149,6 +164,7 @@ function Productpage() {
             })
           : ""}
       </div>
+      <div className="allseeing"></div>
     </div>
   );
 }

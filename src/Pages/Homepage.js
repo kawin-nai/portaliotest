@@ -19,6 +19,7 @@ function Homepage() {
       <div className="main-body">
         <h1 id="main-title">Portal</h1>
       </div>
+      <div className="spacer layer1"></div>
       <div className="bg"></div>
       <div className="footer">
         <div className="footer-content">

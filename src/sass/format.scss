@@ -16,6 +16,10 @@ $clr-gray700: #161d34;
 /*   border radius */
 $radius: 0.2rem;
 
+.allseeing {
+  background-image: url("portalicon.png");
+}
+
 *,
 *::before,
 *::after {
@@ -40,9 +44,6 @@ $radius: 0.2rem;
   height: 100vh;
   top: 0;
   left: 0;
-}
-
-.home-navbar {
 }
 
 .modal {

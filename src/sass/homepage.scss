@@ -2,7 +2,6 @@ $clr-primary: #0086e8;
 $radius: 0.2rem;
 
 .home-page {
-  background-image: url("bg.jpg");
   position: relative;
   min-width: 100%;
   min-height: 100%;
@@ -19,6 +18,16 @@ $radius: 0.2rem;
   justify-content: flex-end;
 }
 
+// .spacer {
+//   aspect-ratio: 16/10;
+//   width: 100%;
+//   background-repeat: no-repeat;
+//   background-position: center;
+//   background-size: cover;
+// }
+// .layer1 {
+//   background-image: url("blob-scene-haikei.svg");
+// }
 .left-logo {
   display: flex;
   justify-content: flex-end;
@@ -52,13 +61,13 @@ $radius: 0.2rem;
 }
 
 .bg {
-  padding: 20em;
-  background-image: url("portalicon.png");
-  background-repeat: no-repeat;
-  background-size: 50%;
-  background-position: center;
-  z-index: 0;
-  border: 2px solid black;
+  // padding: 20em;
+  // background-image: url("portalicon.png");
+  // background-repeat: no-repeat;
+  // background-size: 50%;
+  // background-position: center;
+  // z-index: 0;
+  // border: 2px solid black;
 }
 // .footer {
 //   height: 100px;

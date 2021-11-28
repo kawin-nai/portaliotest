@@ -1,0 +1,8 @@
+1. Implement all the functions in the smart contract
+    - Move create project function to the "Add Product" button and add "goal" and "minGoal" parameters
+
+2. Make a good homepage, change productpage background, etc.
+
+3. Separate initiators and investors part in "Productmain"
+
+4. Load "curRaised" dynamically on page load in "Productmain" and display them using useState

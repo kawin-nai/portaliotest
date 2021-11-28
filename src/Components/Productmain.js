@@ -7,6 +7,7 @@ function Productmain(props) {
   const [goal, setGoal] = useState();
   const [curRaised, setCurRaised] = useState();
   const [amountGiven, setAmountGiven] = useState();
+  const [address, setAddress] = useState();
   var provider = props.myprovider;
   var signer = props.mysigner;
   var contract = props.mycontract;
@@ -15,10 +16,21 @@ function Productmain(props) {
     setAmountGiven(e.target.value);
   };
 
-  const testProvider = () => {
+  const testProvider = async () => {
     console.log(provider);
     console.log(signer);
     console.log(contract);
+    let blockNo = await provider.getBlockNumber();
+    console.log(blockNo);
+    // let testvar =
+    await contract.createProject(props.title, "wowowow", 10000, 1000);
+  };
+
+  const testReturnName = async () => {
+    let projectAddress = await contract.return_name("Art");
+    setAddress(projectAddress);
+    console.log(projectAddress);
+    console.log(address);
   };
 
   return (
@@ -61,12 +73,7 @@ function Productmain(props) {
           </div>
         </div>
         <div className="redeem-vote">
-          <button
-            className="vote-btn vote-cntr-btn"
-            onClick={() => {
-              console.log(provider);
-            }}
-          >
+          <button className="vote-btn vote-cntr-btn" onClick={testReturnName}>
             Vote
           </button>
           <button className="vote-btn vote-cntr-btn" onClick={testProvider}>
