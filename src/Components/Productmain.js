@@ -1,6 +1,26 @@
 import React, { useState, useEffect } from "react";
 import "../sass/mainproduct.scss";
+import { ethers } from "ethers";
+
 function Productmain(props) {
+  const [minGoal, setMinGoal] = useState();
+  const [goal, setGoal] = useState();
+  const [curRaised, setCurRaised] = useState();
+  const [amountGiven, setAmountGiven] = useState();
+  var provider = props.myprovider;
+  var signer = props.mysigner;
+  var contract = props.mycontract;
+
+  const pledge = (e) => {
+    setAmountGiven(e.target.value);
+  };
+
+  const testProvider = () => {
+    console.log(provider);
+    console.log(signer);
+    console.log(contract);
+  };
+
   return (
     <div className="mainpage">
       <div className="left-image">
@@ -22,26 +42,36 @@ function Productmain(props) {
         </div>
         <div className="contribute-section">
           <div className="contr-active">
-            <form className="contribute-form">
+            <div className="contribute-form">
               <input
                 type="text"
                 min="1.00"
-                class="text-field contr-input"
+                className="text-field contr-input"
                 pattern="^\d+([,.][0-9]{1,2})?$"
                 placeholder="Donation Amount"
+                onChange={pledge}
               />
-              <button className="submit-btn cntr-btn">Contribute</button>
-              {/* <input
-                type="submit"
-                class="submit-btn cntr-btn"
-                value="Contribute"
-              /> */}
-            </form>
+              <button
+                className="submit-btn cntr-btn"
+                onClick={() => console.log(amountGiven)}
+              >
+                Contribute
+              </button>
+            </div>
           </div>
         </div>
         <div className="redeem-vote">
-          <button class="vote-btn vote-cntr-btn">Vote</button>
-          <button class="vote-btn vote-cntr-btn">Redeem</button>
+          <button
+            className="vote-btn vote-cntr-btn"
+            onClick={() => {
+              console.log(provider);
+            }}
+          >
+            Vote
+          </button>
+          <button className="vote-btn vote-cntr-btn" onClick={testProvider}>
+            Redeem
+          </button>
         </div>
       </div>
     </div>

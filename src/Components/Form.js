@@ -23,7 +23,6 @@ function Form(props) {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [imgurl, setImgurl] = useState("");
-  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const createTitle = (e) => {
     setTitle(e.target.value);

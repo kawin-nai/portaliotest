@@ -3,19 +3,11 @@ import Productcard from "../Components/Productcard";
 import "../sass/format.scss";
 import Form from "../Components/Form";
 import { initializeApp } from "firebase/app";
-import {
-  Database,
-  getDatabase,
-  ref,
-  set,
-  child,
-  get,
-} from "@firebase/database";
+import { getDatabase, ref, child, get } from "@firebase/database";
 import Connector from "../Wallet/Connector";
-import Web3 from "web3";
 import Backdrop from "../Components/Backdrop";
 import Productmain from "../Components/Productmain";
-import { BrowserRouter as Link } from "react-router-dom";
+import { ethers } from "ethers";
 
 const firebaseConfig = {
   apiKey: "AIzaSyByQWcijM778LTJf2B0jdv87BZjmi1cW1g",
@@ -35,6 +27,7 @@ const db = getDatabase();
 const dbRef = ref(db);
 
 function Productpage() {
+  const contractAddress = "0x25b72301a76dc5a12dB4082c3D9063c3A4F5D78f";
   const [ListOfProduct, setListOfProduct] = useState();
   const [isConnected, setIsConnected] = useState(false);
   const [formIsOpen, setFormIsOpen] = useState(false);
@@ -42,17 +35,42 @@ function Productpage() {
   const [mainPageTitle, setMainPageTitle] = useState("");
   const [mainPageDesc, setMainPageDesc] = useState("");
   const [mainPageShown, setMainPageShown] = useState(false);
-  const providerUrl = process.env.PROVIDER_URL || "http://localhost:3000";
-
-  const arr = [];
-  const databasearr = [];
+  const [account, setAccount] = useState(null);
+  const [provider, setProvider] = useState(null);
+  const [signer, setSigner] = useState(null);
+  const [contract, setContract] = useState(null);
 
   const login = async () => {
-    setIsConnected(true);
+    if (window.ethereum) {
+      window.ethereum
+        .request({ method: "eth_requestAccounts" })
+        .then((result) => {
+          accountChangeHandler(result[0]);
+          setIsConnected(true);
+        });
+    } else {
+      console.log("Metamask not installed");
+    }
   };
 
-  const logout = () => {
-    setIsConnected(false);
+  const accountChangeHandler = (newaccount) => {
+    setAccount(newaccount);
+    updateEthers();
+  };
+
+  const updateEthers = () => {
+    const tempProvider = new ethers.providers.Web3Provider(window.ethereum);
+    setProvider(tempProvider);
+
+    const tempSigner = tempProvider.getSigner();
+    setSigner(tempSigner);
+
+    // const tempContract = new ethers.Contract(
+    //   contractAddress,
+    //   placeholderContract,
+    //   tempSigner
+    // );
+    // setContract(tempContract);
   };
 
   const addProductHandler = () => {
@@ -63,8 +81,7 @@ function Productpage() {
     setFormIsOpen(false);
   };
 
-  const mainPageHandler = (details) => {
-    console.log("handler clicked", details);
+  const mainPageHandler = () => {
     setMainPageShown(true);
   };
 
@@ -94,10 +111,10 @@ function Productpage() {
         <div className="spacer"></div>
         {formIsOpen && <Form onClick={closeFormHandler} />}
         {formIsOpen && <Backdrop onClick={closeFormHandler} />}
-        {!isConnected && <Connector onLogin={login} onLogout={logout} />}
+        {!isConnected && <Connector onLogin={login} />}
         {isConnected && (
           <div>
-            <button className="fakeconnectbutton">Connected</button>
+            <button className="fakeconnectbutton">{account}</button>
           </div>
         )}
       </div>
@@ -106,6 +123,9 @@ function Productpage() {
           img={mainPageImg}
           title={mainPageTitle}
           desc={mainPageDesc}
+          myprovider={provider}
+          mysigner={signer}
+          mycontract={contract}
         />
       )}
       {mainPageShown && <Backdrop onClick={closeMainPageHandler} />}
@@ -122,7 +142,7 @@ function Productpage() {
                     setMainPageImg(databasearrdetail.Image);
                     setMainPageDesc(databasearrdetail.Desc);
                     setMainPageTitle(databasearrdetail.Title);
-                    mainPageHandler(databasearrdetail);
+                    mainPageHandler();
                   }}
                 />
               );
