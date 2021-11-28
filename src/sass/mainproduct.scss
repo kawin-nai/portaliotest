@@ -101,6 +101,8 @@ textarea {
   width: 50%;
   margin-bottom: 0;
   margin-right: 15px;
+  height: 40px;
+  padding: 10px;
 }
 
 .submit-btn {
@@ -126,4 +128,40 @@ textarea {
   width: 50%;
   margin-bottom: 0;
   margin-right: 0;
+}
+
+.camp-goal {
+  font-weight: 400;
+  color: #6a6a6a;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.vote-btn {
+  font-family: "Libre Franklin", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
+  cursor: pointer;
+  background-color: $clr-primary;
+  border: 2px solid $clr-primary;
+  padding: 11px 18px;
+  border-radius: 2px;
+  color: #ffffff;
+  text-align: center;
+  min-height: 40px;
+}
+
+.vote-cntr-btn {
+  width: 48.5%;
+  margin-bottom: 0;
+  margin-right: 0;
+}
+
+.redeem-vote {
+  display: flex;
+  justify-content: space-between;
 }
