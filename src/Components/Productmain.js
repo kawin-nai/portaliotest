@@ -92,7 +92,7 @@ function Productmain(props) {
             <button className="vote-btn vote-cntr-btn" onClick={testReturnName}>
               Vote
             </button>
-            <button className="vote-btn vote-cntr-btn" onClick={testProvider}>
+            <button className="vote-btn redeem-cntr-btn" onClick={testProvider}>
               Redeem
             </button>
           </div>

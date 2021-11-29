@@ -58,14 +58,14 @@ function Form(props) {
       minGoal != 0 &&
       goal > minGoal
     ) {
-      // set(ref(db, "ProductLists/" + title), {
-      //   Title: title,
-      //   Desc: desc,
-      //   Image: imgurl,
-      //   Goal: goal,
-      //   MinGoal: minGoal,
-      // });
-      console.log(title, desc, imgurl, typeof goal, typeof minGoal);
+      set(ref(db, "ProductLists/" + title), {
+        Title: title,
+        Desc: desc,
+        Image: imgurl,
+        Goal: goal,
+        MinGoal: minGoal,
+      });
+      // console.log(title, desc, imgurl, typeof goal, typeof minGoal);
       // await contract.createProject(title, "test-desc", goal, minGoal);
       props.onClick();
     } else {

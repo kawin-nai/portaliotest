@@ -149,8 +149,8 @@ textarea {
   display: flex;
   margin-top: 10px;
   justify-content: space-between;
-  align-items: baseline;
-  width: 59%;
+  // align-items: baseline;
+  width: 71.5%;
 }
 
 .vote-btn {
@@ -171,8 +171,16 @@ textarea {
   min-height: 40px;
 }
 
+.redeem-cntr-btn {
+  padding-left: 55px;
+  padding-right: 55px;
+  margin-bottom: 0;
+  margin-right: 0px;
+  margin-left: 14px;
+}
 .vote-cntr-btn {
-  width: 50;
+  padding-left: 67px;
+  padding-right: 67px;
   margin-bottom: 0;
   margin-right: 0;
 }

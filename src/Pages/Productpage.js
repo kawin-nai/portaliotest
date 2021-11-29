@@ -90,7 +90,7 @@ function Productpage() {
 
   const closeFormHandler = () => {
     setFormIsOpen(false);
-    // window.location.reload(false);
+    window.location.reload(false);
   };
 
   const mainPageHandler = () => {
@@ -116,6 +116,7 @@ function Productpage() {
   useEffect(() => {
     getAllData();
   }, []);
+
   return (
     <div>
       {/* {getAllData()} */}
