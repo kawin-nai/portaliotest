@@ -3,9 +3,8 @@ $radius: 0.2rem;
 
 .mainpage {
   display: flex;
-  //   justify-content: flex-start;
-  left: calc(50% - 40rem);
-  width: 80rem;
+  left: calc(50% - 35rem);
+  width: 70rem;
 }
 
 .connectbutton {
@@ -55,7 +54,7 @@ $radius: 0.2rem;
 
 .camp-desc {
   margin-top: 10px;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 26px;
   letter-spacing: 0;
   font-weight: 400;
@@ -82,6 +81,9 @@ $radius: 0.2rem;
   font-size: 16px;
 }
 
+.selection {
+  display: flex;
+}
 .bottom-four {
   display: flex;
   margin-top: 10px;
@@ -140,7 +142,7 @@ textarea {
 }
 
 .cntr-btn {
-  width: 50%;
+  // width: 50%;
   margin-bottom: 0;
   margin-right: 0;
 }
@@ -150,7 +152,7 @@ textarea {
   margin-top: 10px;
   justify-content: space-between;
   // align-items: baseline;
-  width: 71.5%;
+  // width: 71.5%;
 }
 
 .vote-btn {

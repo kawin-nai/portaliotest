@@ -9,6 +9,7 @@ import Backdrop from "../Components/Backdrop";
 import Productmain from "../Components/Productmain";
 import { ethers } from "ethers";
 import portalcontract from "../Wallet/portalcontract.json";
+
 const firebaseConfig = {
   apiKey: "AIzaSyByQWcijM778LTJf2B0jdv87BZjmi1cW1g",
   authDomain: "portal-be7b2.firebaseapp.com",
@@ -20,17 +21,6 @@ const firebaseConfig = {
   databaseURL:
     "https://portal-be7b2-default-rtdb.asia-southeast1.firebasedatabase.app",
 };
-// const firebaseConfig = {
-//   apiKey: "AIzaSyD_6ykkdQfcTm5cTTc1-56bFJ0A91SGKoY",
-//   authDomain: "portal-f6e77.firebaseapp.com",
-//   projectId: "portal-f6e77",
-//   storageBucket: "portal-f6e77.appspot.com",
-//   messagingSenderId: "532690869478",
-//   appId: "1:532690869478:web:473d7d3e89b0e79318ef27",
-//   measurementId: "G-B8QX656VNX",
-//   databaseURL:
-//     "https://portal-f6e77-default-rtdb.asia-southeast1.firebasedatabase.app/",
-// };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -38,7 +28,7 @@ const db = getDatabase();
 const dbRef = ref(db);
 
 function Productpage() {
-  const contractAddress = "0xAA95EBE5BF44A32be5Ec19E7CDd300D5B12d8fA8";
+  const contractAddress = "0xdC5357D9BB76a57fD2a73BB8a7E60250d90E5CD0";
   const [ListOfProduct, setListOfProduct] = useState();
   const [isConnected, setIsConnected] = useState(false);
   const [formIsOpen, setFormIsOpen] = useState(false);
@@ -46,6 +36,8 @@ function Productpage() {
   const [mainPageTitle, setMainPageTitle] = useState("");
   const [mainPageDesc, setMainPageDesc] = useState("");
   const [mainPageShown, setMainPageShown] = useState(false);
+  const [mainPageGoal, setMainPageGoal] = useState();
+  const [mainPageMinGoal, setMainPageMinGoal] = useState();
   const [account, setAccount] = useState(null);
   const [provider, setProvider] = useState(null);
   const [signer, setSigner] = useState(null);
@@ -88,9 +80,13 @@ function Productpage() {
     setFormIsOpen(true);
   };
 
-  const closeFormHandler = () => {
+  const closeFormHandlerWithReload = () => {
     setFormIsOpen(false);
     window.location.reload(false);
+  };
+
+  const closeFormHandler = () => {
+    setFormIsOpen(false);
   };
 
   const mainPageHandler = () => {
@@ -126,7 +122,7 @@ function Productpage() {
         </button>
         <div className="spacer"></div>
         {formIsOpen && (
-          <Form onClick={closeFormHandler} mycontract={contract} />
+          <Form onClick={closeFormHandlerWithReload} mycontract={contract} />
         )}
         {formIsOpen && <Backdrop onClick={closeFormHandler} />}
         {!isConnected && <Connector onLogin={login} />}
@@ -141,13 +137,15 @@ function Productpage() {
           img={mainPageImg}
           title={mainPageTitle}
           desc={mainPageDesc}
+          goal={mainPageGoal}
+          mingoal={mainPageMinGoal}
           myprovider={provider}
           mysigner={signer}
           mycontract={contract}
         />
       )}
       {mainPageShown && <Backdrop onClick={closeMainPageHandler} />}
-      <h2>Products</h2>
+      <h2>Projects</h2>
       <div className="wrapper">
         {ListOfProduct
           ? ListOfProduct.map((databasearrdetail) => {
@@ -160,6 +158,8 @@ function Productpage() {
                     setMainPageImg(databasearrdetail.Image);
                     setMainPageDesc(databasearrdetail.Desc);
                     setMainPageTitle(databasearrdetail.Title);
+                    setMainPageGoal(databasearrdetail.Goal);
+                    setMainPageMinGoal(databasearrdetail.MinGoal);
                     mainPageHandler();
                   }}
                 />

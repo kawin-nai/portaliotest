@@ -28,17 +28,6 @@ const firebaseConfig = {
   databaseURL:
     "https://portal-be7b2-default-rtdb.asia-southeast1.firebasedatabase.app",
 };
-// const firebaseConfig = {
-//   apiKey: "AIzaSyD_6ykkdQfcTm5cTTc1-56bFJ0A91SGKoY",
-//   authDomain: "portal-f6e77.firebaseapp.com",
-//   projectId: "portal-f6e77",
-//   storageBucket: "portal-f6e77.appspot.com",
-//   messagingSenderId: "532690869478",
-//   appId: "1:532690869478:web:473d7d3e89b0e79318ef27",
-//   measurementId: "G-B8QX656VNX",
-//   databaseURL:
-//     "https://portal-f6e77-default-rtdb.asia-southeast1.firebasedatabase.app/",
-// };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

@@ -47,7 +47,7 @@ function Form(props) {
     setMinGoal(parseInt(e.target.value));
   };
 
-  const createEntry = () => {
+  const createEntry = async () => {
     if (
       title !== "" &&
       desc !== "" &&
@@ -66,7 +66,7 @@ function Form(props) {
         MinGoal: minGoal,
       });
       // console.log(title, desc, imgurl, typeof goal, typeof minGoal);
-      // await contract.createProject(title, "test-desc", goal, minGoal);
+      await contract.createProject(title, "test-desc", goal, minGoal);
       props.onClick();
     } else {
       alert("Please fill all the form correctly");
