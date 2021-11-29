@@ -20,6 +20,17 @@ const firebaseConfig = {
   databaseURL:
     "https://portal-be7b2-default-rtdb.asia-southeast1.firebasedatabase.app",
 };
+// const firebaseConfig = {
+//   apiKey: "AIzaSyD_6ykkdQfcTm5cTTc1-56bFJ0A91SGKoY",
+//   authDomain: "portal-f6e77.firebaseapp.com",
+//   projectId: "portal-f6e77",
+//   storageBucket: "portal-f6e77.appspot.com",
+//   messagingSenderId: "532690869478",
+//   appId: "1:532690869478:web:473d7d3e89b0e79318ef27",
+//   measurementId: "G-B8QX656VNX",
+//   databaseURL:
+//     "https://portal-f6e77-default-rtdb.asia-southeast1.firebasedatabase.app/",
+// };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -65,21 +76,6 @@ function Productpage() {
     const tempSigner = tempProvider.getSigner();
     setSigner(tempSigner);
 
-    // const daiAbi = [
-    //   // Some details about the token
-    //   "function name() view returns (string)",
-    //   "function symbol() view returns (string)",
-
-    //   // Get the account balance
-    //   "function balanceOf(address) view returns (uint)",
-
-    //   // Send some of your tokens to someone else
-    //   "function transfer(address to, uint amount)",
-
-    //   // An event triggered whenever anyone transfers to someone else
-    //   "event Transfer(address indexed from, address indexed to, uint amount)",
-    // ];
-
     const tempContract = new ethers.Contract(
       contractAddress,
       portalcontract,
@@ -94,6 +90,7 @@ function Productpage() {
 
   const closeFormHandler = () => {
     setFormIsOpen(false);
+    window.location.reload(false);
   };
 
   const mainPageHandler = () => {
@@ -116,9 +113,12 @@ function Productpage() {
     });
   };
 
+  useEffect(() => {
+    getAllData();
+  }, []);
   return (
     <div>
-      {getAllData()}
+      {/* {getAllData()} */}
       <div className="navbar-container">
         <button className="connectbutton" onClick={addProductHandler}>
           Create Project
