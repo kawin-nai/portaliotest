@@ -32,12 +32,13 @@ function Productmain(props) {
       ethers.utils.hexlify(parseInt(amountGiven)),
       typeof ethers.utils.hexlify(parseInt(amountGiven))
     );
-    const tx = await signer.sendTransaction({
-      to: "0xdC5357D9BB76a57fD2a73BB8a7E60250d90E5CD0",
+    const overrides = {
+      // to: "0xdC5357D9BB76a57fD2a73BB8a7E60250d90E5CD0",
       value: ethers.utils.hexlify(parseInt(amountGiven)), //400,
-    });
+    };
+
     console.log("Transaction Completed");
-    await contract.contribute(props.title);
+    const tx = await contract.contribute(props.title, overrides);
   };
 
   const launch = async () => {
@@ -66,7 +67,7 @@ function Productmain(props) {
 
   const cancelProject = async () => {
     // invest
-    // await contract.cancel_project(props.title);
+    await contract.cancel_project(props.title);
     console.log("Cancel project");
   };
   const testProvider = async () => {
