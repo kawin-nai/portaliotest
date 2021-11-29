@@ -23,7 +23,7 @@ function Productmain(props) {
     let blockNo = await provider.getBlockNumber();
     console.log(blockNo);
     // let testvar =
-    await contract.createProject(props.title, "wowowow", 10000, 1000);
+    // await contract.createProject(props.title, "wowowow", 10000, 1000);
   };
 
   const testReturnName = async () => {
@@ -52,33 +52,50 @@ function Productmain(props) {
             <span>Min Goal: 2500 HKD</span>
           </div>
         </div>
-        <div className="contribute-section">
-          <div className="contr-active">
-            <div className="contribute-form">
-              <input
-                type="text"
-                min="1.00"
-                className="text-field contr-input"
-                pattern="^\d+([,.][0-9]{1,2})?$"
-                placeholder="Donation Amount"
-                onChange={pledge}
-              />
-              <button
-                className="submit-btn cntr-btn"
-                onClick={() => console.log(amountGiven)}
-              >
-                Contribute
-              </button>
+        <div className="bottom-four">
+          <div className="contribute-section">
+            <div className="contr-active">
+              <div className="contribute-form">
+                <input
+                  type="text"
+                  min="1.00"
+                  className="text-field contr-input"
+                  pattern="^\d+([,.][0-9]{1,2})?$"
+                  placeholder="Donation Amount"
+                  onChange={pledge}
+                />
+                <button
+                  className="submit-btn cntr-btn"
+                  onClick={() => console.log(amountGiven)}
+                >
+                  Contribute
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="redeem-vote">
-          <button className="vote-btn vote-cntr-btn" onClick={testReturnName}>
-            Vote
-          </button>
-          <button className="vote-btn vote-cntr-btn" onClick={testProvider}>
-            Redeem
-          </button>
+          {/* <div className="contribute-section">
+            <div className="contr-active">
+              <div className="contribute-form">
+                <button
+                  className="submit-btn cntr-btn"
+                  onClick={testReturnName}
+                >
+                  Vote
+                </button>
+                <button className="submit-btn cntr-btn" onClick={testProvider}>
+                  Redeem
+                </button>
+              </div>
+            </div>
+          </div> */}
+          <div className="redeem-vote">
+            <button className="vote-btn vote-cntr-btn" onClick={testReturnName}>
+              Vote
+            </button>
+            <button className="vote-btn vote-cntr-btn" onClick={testProvider}>
+              Redeem
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -23,6 +23,9 @@ function Form(props) {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [imgurl, setImgurl] = useState("");
+  const [goal, setGoal] = useState();
+  const [minGoal, setMinGoal] = useState();
+  var contract = props.mycontract;
 
   const createTitle = (e) => {
     setTitle(e.target.value);
@@ -36,28 +39,111 @@ function Form(props) {
     setImgurl(e.target.value);
   };
 
+  const createGoal = (e) => {
+    setGoal(parseInt(e.target.value));
+  };
+
+  const createMinGoal = (e) => {
+    setMinGoal(parseInt(e.target.value));
+  };
+
   const createEntry = () => {
-    if (title !== "" && desc !== "" && imgurl !== "") {
-      set(ref(db, "ProductLists/" + title), {
-        Title: title,
-        Desc: desc,
-        Image: imgurl,
-      });
+    if (
+      title !== "" &&
+      desc !== "" &&
+      imgurl !== "" &&
+      goal !== undefined &&
+      minGoal !== undefined &&
+      goal != 0 &&
+      minGoal != 0 &&
+      goal > minGoal
+    ) {
+      // set(ref(db, "ProductLists/" + title), {
+      //   Title: title,
+      //   Desc: desc,
+      //   Image: imgurl,
+      //   Goal: goal,
+      //   MinGoal: minGoal,
+      // });
+      console.log(title, desc, imgurl, typeof goal, typeof minGoal);
+      // await contract.createProject(title, "test-desc", goal, minGoal);
+      props.onClick();
+    } else {
+      alert("Please fill all the form correctly");
     }
-    props.onClick();
   };
 
   return (
     <div className="modal">
-      <br />
-      <label>Title: </label>
-      <input type="text" className="inputfield" onChange={createTitle}></input>
-      <br />
-      <label>Description: </label>
-      <input type="text" className="inputfield" onChange={createDesc}></input>
-      <br />
-      <label>Image URL: </label>
-      <input type="text" className="inputfield" onChange={createImgurl}></input>
+      <div className="text-fields">
+        <div>
+          <label>Title: </label>
+          <br />
+          <input
+            type="text"
+            className="inputfield"
+            placeholder="Project Title"
+            onChange={createTitle}
+          ></input>
+        </div>
+
+        <br />
+        <div>
+          <label>Description: </label>
+          <br />
+          {/* <input
+            type="text"
+            className="inputfield"
+            onChange={createDesc}
+          ></input> */}
+          <textarea
+            name="description"
+            id=""
+            cols="52"
+            rows="10"
+            id="desc-text-area"
+            placeholder="A brief description of your project"
+            onChange={createDesc}
+          ></textarea>
+        </div>
+
+        <br />
+        <div>
+          <label>Image URL: </label>
+          <br />
+          <input
+            type="text"
+            className="inputfield"
+            placeholder="Link to Image URL"
+            onChange={createImgurl}
+          ></input>
+        </div>
+
+        <br />
+        <div>
+          <label>Total Goal: </label>
+          <br />
+          <input
+            type="number"
+            className="inputfield"
+            placeholder="Amount in HKD"
+            onChange={createGoal}
+          ></input>
+        </div>
+
+        <br />
+        <div>
+          <label>Minimum Goal: </label>
+          <br />
+          <input
+            type="number"
+            className="inputfield"
+            placeholder="Amount in HKD"
+            onChange={createMinGoal}
+          ></input>
+        </div>
+      </div>
+
       <br />
       <button onClick={createEntry} className="topbarbutton">
         Commit

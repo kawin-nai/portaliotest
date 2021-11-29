@@ -76,6 +76,18 @@ $radius: 0.2rem;
   text-align: left;
 }
 
+.camp-goal {
+  font-weight: 400;
+  color: #6a6a6a;
+  font-size: 16px;
+}
+
+.bottom-four {
+  display: flex;
+  margin-top: 10px;
+  flex-flow: row wrap;
+}
+
 .contribute-section {
   display: flex;
   align-items: center;
@@ -133,10 +145,12 @@ textarea {
   margin-right: 0;
 }
 
-.camp-goal {
-  font-weight: 400;
-  color: #6a6a6a;
-  font-size: 16px;
+.redeem-vote {
+  display: flex;
+  margin-top: 10px;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 59%;
 }
 
 .vote-btn {
@@ -158,12 +172,7 @@ textarea {
 }
 
 .vote-cntr-btn {
-  width: 48.5%;
+  width: 50;
   margin-bottom: 0;
   margin-right: 0;
-}
-
-.redeem-vote {
-  display: flex;
-  justify-content: space-between;
 }

@@ -90,7 +90,7 @@ function Productpage() {
 
   const closeFormHandler = () => {
     setFormIsOpen(false);
-    window.location.reload(false);
+    // window.location.reload(false);
   };
 
   const mainPageHandler = () => {
@@ -124,7 +124,9 @@ function Productpage() {
           Create Project
         </button>
         <div className="spacer"></div>
-        {formIsOpen && <Form onClick={closeFormHandler} />}
+        {formIsOpen && (
+          <Form onClick={closeFormHandler} mycontract={contract} />
+        )}
         {formIsOpen && <Backdrop onClick={closeFormHandler} />}
         {!isConnected && <Connector onLogin={login} />}
         {isConnected && (
