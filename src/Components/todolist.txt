@@ -6,3 +6,7 @@
 3. Separate initiators and investors part in "Productmain"
 
 4. Load "curRaised" dynamically on page load in "Productmain" and display them using useState
+
+5. Display the current state of the project (upload the stage to firebase + retrieving them on mainpage load)
+
+6. Create text box for nextMinGoal after pressing redeem button (upload to firebase)

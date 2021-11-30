@@ -38,6 +38,7 @@ function Productpage() {
   const [mainPageShown, setMainPageShown] = useState(false);
   const [mainPageGoal, setMainPageGoal] = useState();
   const [mainPageMinGoal, setMainPageMinGoal] = useState();
+  const [mainPageStage, setMainPageStage] = useState();
   const [account, setAccount] = useState(null);
   const [provider, setProvider] = useState(null);
   const [signer, setSigner] = useState(null);
@@ -139,6 +140,7 @@ function Productpage() {
           desc={mainPageDesc}
           goal={mainPageGoal}
           mingoal={mainPageMinGoal}
+          stage={mainPageStage}
           myprovider={provider}
           mysigner={signer}
           mycontract={contract}
@@ -160,6 +162,7 @@ function Productpage() {
                     setMainPageTitle(databasearrdetail.Title);
                     setMainPageGoal(databasearrdetail.Goal);
                     setMainPageMinGoal(databasearrdetail.MinGoal);
+                    setMainPageStage(databasearrdetail.Stage);
                     mainPageHandler();
                   }}
                 />

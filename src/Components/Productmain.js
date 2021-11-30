@@ -1,6 +1,32 @@
 import React, { useState, useEffect } from "react";
 import "../sass/mainproduct.scss";
 import { ethers } from "ethers";
+import { initializeApp } from "firebase/app";
+import {
+  Database,
+  getDatabase,
+  ref,
+  set,
+  child,
+  get,
+} from "@firebase/database";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyByQWcijM778LTJf2B0jdv87BZjmi1cW1g",
+  authDomain: "portal-be7b2.firebaseapp.com",
+  projectId: "portal-be7b2",
+  storageBucket: "portal-be7b2.appspot.com",
+  messagingSenderId: "468751414945",
+  appId: "1:468751414945:web:c857565878d1a07e7262e0",
+  measurementId: "G-PQGDMPGJMR",
+  databaseURL:
+    "https://portal-be7b2-default-rtdb.asia-southeast1.firebasedatabase.app",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getDatabase();
+const dbRef = ref(db);
 
 function Productmain(props) {
   // const [minGoal, setMinGoal] = useState();
@@ -9,7 +35,9 @@ function Productmain(props) {
   const [amountGiven, setAmountGiven] = useState("");
   const [address, setAddress] = useState();
   const [isInit, setIsInit] = useState(true);
-  // const [contract, setContract] = useState(null);
+  const [oldStage, setOldStage] = useState(props.stage);
+  const [newMinGoal, setNewMinGoal] = useState(props.mingoal);
+  const [curMinGoal, setCurMinGoal] = useState(props.mingoal);
   var provider = props.myprovider;
   var signer = props.mysigner;
   var contract = props.mycontract;
@@ -22,6 +50,10 @@ function Productmain(props) {
   };
   const createAmountGiven = (e) => {
     setAmountGiven(e.target.value);
+  };
+
+  const createMinGoal = (e) => {
+    setNewMinGoal(parseInt(e.target.value));
   };
 
   const pledge = async () => {
@@ -61,8 +93,10 @@ function Productmain(props) {
 
   const redeemMoney = async () => {
     // init
-    await contract.redeem(props.title, props.mingoal);
+    // await contract.redeem(props.title, props.mingoal);
     console.log("Redeem money");
+    await set(ref(db, "ProductLists/" + props.title + "/MinGoal"), newMinGoal);
+    setCurMinGoal(newMinGoal);
   };
 
   const cancelProject = async () => {
@@ -76,8 +110,6 @@ function Productmain(props) {
     console.log(contract);
     let blockNo = await provider.getBlockNumber();
     console.log(blockNo);
-    // let testvar =
-    // await contract.createProject(props.title, "wowowow", props.goal, props.mingoal);
   };
 
   const testReturnName = async () => {
@@ -85,6 +117,16 @@ function Productmain(props) {
     setAddress(projectAddress);
     console.log(projectAddress);
     console.log(address);
+  };
+
+  const changeStage = async () => {
+    await set(ref(db, "ProductLists/" + props.title + "/Stage"), oldStage);
+  };
+
+  const increaseStage = async () => {
+    // console.log(props.stage);
+    setOldStage(oldStage + 1);
+    changeStage();
   };
 
   return (
@@ -103,22 +145,53 @@ function Productmain(props) {
           <div className="camp-goal">
             <span>Total Goal: {props.goal} HKD</span>
             <br />
-            <span>Min Goal: {props.mingoal} HKD</span>
+            <span>Min Goal: {curMinGoal} HKD</span>
           </div>
         </div>
-        <div className="selection">
-          <button onClick={isInvestor}>Investor</button>
-          <button onClick={isInitiator}>Initiator</button>
-          <button onClick={testProvider}>PrintContract</button>
+        <div className="cur-stage">
+          {oldStage == 0 && <p>Project not launched</p>}
+          {oldStage != 0 && <p>{oldStage}</p>}
+        </div>
+        <div>
+          {!isInit && (
+            <div className="selection-house">
+              <p onClick={isInvestor} className="selection selected">
+                Investor
+              </p>
+              <p onClick={isInitiator} className="selection">
+                Initiator
+              </p>
+            </div>
+          )}
+          {isInit && (
+            <div className="selection-house">
+              <p onClick={isInvestor} className="selection">
+                Investor
+              </p>
+              <p onClick={isInitiator} className="selection selected">
+                Initiator
+              </p>
+            </div>
+          )}
+          {/* <button onClick={testProvider}>PrintContract</button>
+          <button onClick={increaseStage}>Increase Stage</button> */}
         </div>
         <div className="bottom-four">
-          {!isInit && (
-            <div className="contribute-section">
+          {isInit && (
+            <div className="initiator-section">
+              <div className="redeem-area">
+                <input
+                  type="number"
+                  onChange={createMinGoal}
+                  placeholder="Next Min Goal"
+                  className="min-goal-field"
+                ></input>
+                <button className="submit-btn cntr-btn" onClick={redeemMoney}>
+                  Redeem Money
+                </button>
+              </div>
               <div className="contr-active">
                 <div className="contribute-form">
-                  <button className="submit-btn cntr-btn" onClick={redeemMoney}>
-                    Redeem Money
-                  </button>
                   <button className="submit-btn cntr-btn" onClick={launch}>
                     Launch
                   </button>
@@ -127,7 +200,7 @@ function Productmain(props) {
             </div>
           )}
 
-          {isInit && (
+          {!isInit && (
             <div>
               <div className="contribute-section">
                 <div className="contr-active">
