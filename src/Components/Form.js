@@ -67,8 +67,14 @@ function Form(props) {
         Stage: 0,
       });
       // console.log(title, desc, imgurl, typeof goal, typeof minGoal);
-      // await contract.createProject(title, "test-desc", goal, minGoal);
-      props.onClick();
+      await contract
+        .createProject(title, "test-desc", goal, minGoal)
+        .then(() => {
+          props.onClick();
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
     } else {
       alert("Please fill all the form correctly");
     }

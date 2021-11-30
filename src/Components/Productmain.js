@@ -34,7 +34,7 @@ function Productmain(props) {
   const [curRaised, setCurRaised] = useState();
   const [amountGiven, setAmountGiven] = useState("");
   const [address, setAddress] = useState();
-  const [isInit, setIsInit] = useState(true);
+  const [isInit, setIsInit] = useState(false);
   const [oldStage, setOldStage] = useState(props.stage);
   const [newMinGoal, setNewMinGoal] = useState(props.mingoal);
   const [curMinGoal, setCurMinGoal] = useState(props.mingoal);
@@ -69,41 +69,84 @@ function Productmain(props) {
       value: ethers.utils.hexlify(parseInt(amountGiven)), //400,
     };
 
-    console.log("Transaction Completed");
-    const tx = await contract.contribute(props.title, overrides);
+    // console.log("Transaction Completed");
+    await contract
+      .contribute(props.title, overrides)
+      .then(() => {
+        console.log("Transaction Completed");
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   };
 
   const launch = async () => {
     // init
-    await contract.Launch(props.title);
-    console.log("Launch");
+    // await contract.Launch(props.title);
+    // console.log("Launch");
+    await contract
+      .Launch(props.title)
+      .then(() => {
+        console.log("Launch");
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   };
 
   const voteYes = async () => {
     // invest
-    await contract.vote(props.title, true);
-    console.log("Yes");
+    await contract
+      .vote(props.title, true)
+      .then(() => {
+        console.log("Yes");
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   };
 
   const voteNo = async () => {
     // invest
-    await contract.vote(props.title, false);
-    console.log("No");
+    await contract
+      .vote(props.title, false)
+      .then(() => {
+        console.log("No");
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   };
 
   const redeemMoney = async () => {
     // init
-    // await contract.redeem(props.title, props.mingoal);
-    console.log("Redeem money");
-    await set(ref(db, "ProductLists/" + props.title + "/MinGoal"), newMinGoal);
-    setCurMinGoal(newMinGoal);
+    await contract
+      .redeem(props.title, props.mingoal)
+      .then(async () => {
+        await set(
+          ref(db, "ProductLists/" + props.title + "/MinGoal"),
+          newMinGoal
+        );
+        setCurMinGoal(newMinGoal);
+        console.log("Redeem money");
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   };
 
   const cancelProject = async () => {
     // invest
-    await contract.cancel_project(props.title);
-    console.log("Cancel project");
+    await contract
+      .cancel_project(props.title)
+      .then(() => {
+        console.log("Cancel project");
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   };
+
   const testProvider = async () => {
     console.log(provider);
     console.log(signer);
@@ -149,6 +192,7 @@ function Productmain(props) {
           </div>
         </div>
         <div className="cur-stage">
+          <p>Current Stage: </p>
           {oldStage == 0 && <p>Project not launched</p>}
           {oldStage != 0 && <p>{oldStage}</p>}
         </div>
