@@ -18,6 +18,7 @@ function Homepage() {
       </nav>
       <div className="main-body">
         <h1 id="main-title">Portal</h1>
+        <h3 className="main-page-desc">Crowdfunding</h3>
       </div>
       <div className="spacer layer1"></div>
       <div className="bg"></div>

@@ -2,18 +2,22 @@ $clr-primary: #0086e8;
 $radius: 0.2rem;
 
 .home-page {
-  position: relative;
+  // position: relative;
   min-width: 100%;
   min-height: 100%;
   background-size: cover;
   background-position: center;
+  background-image: url("stars-bg.jpg");
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 #right-button {
   display: flex;
   justify-content: flex-end;
 }
 
-.navbar-container {
+.navbar-container-homepage {
   display: flex;
   justify-content: flex-end;
 }
@@ -44,6 +48,7 @@ $radius: 0.2rem;
   border-radius: $radius;
   transition: background 100ms ease-in, color 100ms ease-in;
   cursor: pointer;
+  background-color: white;
 
   &:hover {
     background: $clr-primary;
@@ -58,6 +63,14 @@ $radius: 0.2rem;
 #main-title {
   text-align: center;
   font-size: 3em;
+  color: white;
+}
+
+.main-page-desc {
+  text-align: center;
+  font-size: 2em;
+  color: white;
+  margin: 50px;
 }
 
 .bg {

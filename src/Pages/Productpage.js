@@ -9,6 +9,7 @@ import Backdrop from "../Components/Backdrop";
 import Productmain from "../Components/Productmain";
 import { ethers } from "ethers";
 import portalcontract from "../Wallet/portalcontract.json";
+import logo from "../sass/portalicon.png";
 
 const firebaseConfig = {
   apiKey: "AIzaSyByQWcijM778LTJf2B0jdv87BZjmi1cW1g",
@@ -119,10 +120,17 @@ function Productpage() {
     <div>
       {/* {getAllData()} */}
       <div className="navbar-container">
-        <button className="connectbutton" onClick={addProductHandler}>
-          Create Project
-        </button>
-        <div className="spacer"></div>
+        <div>
+          <button className="connectbutton" onClick={addProductHandler}>
+            Create Project
+          </button>
+        </div>
+
+        {/* <div className="spacer"></div> */}
+        <div className="logo-brand">
+          <img src={logo} alt="portal-logl" width="50px" height="40px" />
+          <h3>Portal</h3>
+        </div>
         {formIsOpen && (
           <Form onClick={closeFormHandlerWithReload} mycontract={contract} />
         )}
@@ -149,7 +157,7 @@ function Productpage() {
         />
       )}
       {mainPageShown && <Backdrop onClick={closeMainPageHandler} />}
-      <h2>Projects</h2>
+      <h2 id="project-header">Projects</h2>
       <div className="wrapper">
         {ListOfProduct
           ? ListOfProduct.map((databasearrdetail) => {

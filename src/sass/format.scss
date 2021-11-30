@@ -30,7 +30,12 @@ $radius: 0.2rem;
 
 .navbar-container {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+}
+
+.logo-brand {
+  margin-top: 18px;
+  text-align: center;
 }
 
 .spacer {
@@ -45,7 +50,10 @@ $radius: 0.2rem;
   top: 0;
   left: 0;
 }
-
+#project-header {
+  margin-top: 10px;
+  margin-left: 16px;
+}
 .modal {
   display: flex;
   flex-direction: column;
