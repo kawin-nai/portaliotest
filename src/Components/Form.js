@@ -65,6 +65,7 @@ function Form(props) {
         Goal: goal,
         MinGoal: minGoal,
         Stage: 0,
+        Raised: 0,
       });
       // console.log(title, desc, imgurl, typeof goal, typeof minGoal);
       await contract

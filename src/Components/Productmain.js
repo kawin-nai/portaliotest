@@ -32,7 +32,7 @@ const dbRef = ref(db);
 function Productmain(props) {
   // const [minGoal, setMinGoal] = useState();
   // const [goal, setGoal] = useState();
-  const [curRaised, setCurRaised] = useState();
+  const [curRaised, setCurRaised] = useState(props.raised);
   const [amountGiven, setAmountGiven] = useState("");
   const [address, setAddress] = useState();
   const [isInit, setIsInit] = useState(false);
@@ -40,6 +40,7 @@ function Productmain(props) {
   const [newMinGoal, setNewMinGoal] = useState(props.mingoal);
   const [curMinGoal, setCurMinGoal] = useState(props.mingoal);
   var teststage = oldStage;
+  var testraised = curRaised;
   var provider = props.myprovider;
   var signer = props.mysigner;
   var contract = props.mycontract;
@@ -59,27 +60,39 @@ function Productmain(props) {
   };
 
   const pledge = async () => {
-    console.log("Pledge", props.title, amountGiven);
-    console.log(contract);
     // invest
-    console.log(
-      ethers.utils.hexlify(parseInt(amountGiven)),
-      typeof ethers.utils.hexlify(parseInt(amountGiven))
-    );
+    // console.log(
+    //   ethers.utils.hexlify(parseInt(amountGiven)),
+    //   typeof ethers.utils.hexlify(parseInt(amountGiven))
+    // );
     const overrides = {
       // to: "0xdC5357D9BB76a57fD2a73BB8a7E60250d90E5CD0",
       value: ethers.utils.hexlify(parseInt(amountGiven)), //400,
     };
 
     // console.log("Transaction Completed");
+    // addRaised(parseInt(amountGiven));
     await contract
       .contribute(props.title, overrides)
       .then(() => {
         console.log("Transaction Completed");
+        addRaised(parseInt(amountGiven));
       })
       .catch((error) => {
         alert(error.message);
       });
+  };
+
+  const addRaised = (e) => {
+    testraised += e;
+    setCurRaised(testraised);
+    set(ref(db, "ProductLists/" + props.title + "/Raised"), testraised);
+  };
+
+  const setRaised = (e) => {
+    testraised = e;
+    setCurRaised(testraised);
+    set(ref(db, "ProductLists/" + props.title + "/Raised"), testraised);
   };
 
   const launch = async () => {
@@ -90,6 +103,7 @@ function Productmain(props) {
       .Launch(props.title)
       .then(() => {
         console.log("Launch");
+        setStage(1);
       })
       .catch((error) => {
         alert(error.message);
@@ -153,18 +167,24 @@ function Productmain(props) {
     console.log(provider);
     console.log(signer);
     console.log(contract);
-    let blockNo = await provider.getBlockNumber();
-    console.log(blockNo);
+    if (provider == null) {
+      alert("Please log in to Metamask");
+      return;
+    }
+    let blockNo = await provider
+      .getBlockNumber()
+      .then(() => {
+        console.log(blockNo);
+      })
+      .catch((error) => {
+        alert("Something went wrong");
+      });
+
     setStage(0);
+    setRaised(0);
   };
 
-  const testReturnName = async () => {
-    let projectAddress = await contract.return_name("Art");
-    setAddress(projectAddress);
-    console.log(projectAddress);
-    console.log(address);
-  };
-
+  const stageUpdate = () => {};
   const setStage = (e) => {
     // console.log(props.stage);
     teststage = e;
@@ -177,6 +197,10 @@ function Productmain(props) {
     teststage++;
     setOldStage(teststage);
     set(ref(db, "ProductLists/" + props.title + "/Stage"), teststage);
+  };
+
+  const miscTest = () => {
+    console.log(contract.return_isOpen(props.title));
   };
 
   return (
@@ -197,7 +221,7 @@ function Productmain(props) {
         />
         <div className="camp-progress">
           <div className="progress-raised">
-            <span className="total-amount">2000 HKD </span>
+            <span className="total-amount">{curRaised} HKD </span>
             <span>Raised by backer</span>
           </div>
           <div className="camp-goal">
@@ -235,8 +259,9 @@ function Productmain(props) {
               </p>
             </div>
           )}
-          <button onClick={testProvider}>PrintContract</button>
+          <button onClick={testProvider}>TestAndReset</button>
           <button onClick={increaseStage}>Increase Stage</button>
+          <button onClick={miscTest}>Miscellaneous</button>
         </div>
         <div className="bottom-four">
           {isInit && (
@@ -249,7 +274,7 @@ function Productmain(props) {
                   className="min-goal-field"
                 ></input>
                 <button className="submit-btn cntr-btn" onClick={redeemMoney}>
-                  Redeem Money
+                  Redeem Fund
                 </button>
               </div>
               <div className="contr-active">
