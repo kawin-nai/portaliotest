@@ -10,7 +10,7 @@ import {
   child,
   get,
 } from "@firebase/database";
-import "../sass/Discord-Logo-Color.png";
+import discordlogo from "../sass/Discord-Logo-Color.svg";
 
 const firebaseConfig = {
   apiKey: "AIzaSyByQWcijM778LTJf2B0jdv87BZjmi1cW1g",
@@ -212,10 +212,8 @@ function Productmain(props) {
         <div className="camp-title">{props.title}</div>
         <div className="camp-desc">{props.desc}</div>
         <img
-          // src="src\sass\Discord-Logo-Color.png"
-          src="/Discord-Logo-Color.svg"
-          width="50px"
-          height="50px"
+          src={discordlogo}
+          width="35px"
           alt="Discord"
           className="discord-logo"
         />

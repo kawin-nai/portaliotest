@@ -7,7 +7,7 @@ function Homepage() {
   return (
     <div className="home-page">
       <nav className="home-navbar">
-        <div className="navbar-container">
+        <div className="navbar-container-homepage">
           <p className="connectbutton">Logo Placeholder</p>
           <div className="spacer"></div>
 
