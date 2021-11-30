@@ -10,6 +10,7 @@ import {
   child,
   get,
 } from "@firebase/database";
+import "../sass/Discord-Logo-Color.png";
 
 const firebaseConfig = {
   apiKey: "AIzaSyByQWcijM778LTJf2B0jdv87BZjmi1cW1g",
@@ -38,6 +39,7 @@ function Productmain(props) {
   const [oldStage, setOldStage] = useState(props.stage);
   const [newMinGoal, setNewMinGoal] = useState(props.mingoal);
   const [curMinGoal, setCurMinGoal] = useState(props.mingoal);
+  var teststage = oldStage;
   var provider = props.myprovider;
   var signer = props.mysigner;
   var contract = props.mycontract;
@@ -153,6 +155,7 @@ function Productmain(props) {
     console.log(contract);
     let blockNo = await provider.getBlockNumber();
     console.log(blockNo);
+    setStage(0);
   };
 
   const testReturnName = async () => {
@@ -162,14 +165,18 @@ function Productmain(props) {
     console.log(address);
   };
 
-  const changeStage = async () => {
-    await set(ref(db, "ProductLists/" + props.title + "/Stage"), oldStage);
+  const setStage = (e) => {
+    // console.log(props.stage);
+    teststage = e;
+    setOldStage(teststage);
+    set(ref(db, "ProductLists/" + props.title + "/Stage"), teststage);
+    // changeStage();
   };
 
-  const increaseStage = async () => {
-    // console.log(props.stage);
-    setOldStage(oldStage + 1);
-    changeStage();
+  const increaseStage = () => {
+    teststage++;
+    setOldStage(teststage);
+    set(ref(db, "ProductLists/" + props.title + "/Stage"), teststage);
   };
 
   return (
@@ -180,6 +187,14 @@ function Productmain(props) {
       <div className="right-content">
         <div className="camp-title">{props.title}</div>
         <div className="camp-desc">{props.desc}</div>
+        <img
+          // src="src\sass\Discord-Logo-Color.png"
+          src="/Discord-Logo-Color.svg"
+          width="50px"
+          height="50px"
+          alt="Discord"
+          className="discord-logo"
+        />
         <div className="camp-progress">
           <div className="progress-raised">
             <span className="total-amount">2000 HKD </span>
@@ -194,7 +209,10 @@ function Productmain(props) {
         <div className="cur-stage">
           <p>Current Stage: </p>
           {oldStage == 0 && <p>Project not launched</p>}
-          {oldStage != 0 && <p>{oldStage}</p>}
+          {oldStage == 1 && <p>Project launched - waiting for votes</p>}
+          {oldStage == 2 && <p>Voting passed - waiting for redeem</p>}
+          {oldStage == 3 && <p>Voting failed - waiting for cancel</p>}
+          {oldStage == 4 && <p>Project ended</p>}
         </div>
         <div>
           {!isInit && (
@@ -217,8 +235,8 @@ function Productmain(props) {
               </p>
             </div>
           )}
-          {/* <button onClick={testProvider}>PrintContract</button>
-          <button onClick={increaseStage}>Increase Stage</button> */}
+          <button onClick={testProvider}>PrintContract</button>
+          <button onClick={increaseStage}>Increase Stage</button>
         </div>
         <div className="bottom-four">
           {isInit && (
@@ -253,7 +271,7 @@ function Productmain(props) {
                       className="submit-btn cntr-btn"
                       onClick={cancelProject}
                     >
-                      Cancel Project
+                      Cancel
                     </button>
                     <input
                       type="text"

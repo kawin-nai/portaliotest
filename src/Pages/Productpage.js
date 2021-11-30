@@ -141,6 +141,7 @@ function Productpage() {
           goal={mainPageGoal}
           mingoal={mainPageMinGoal}
           stage={mainPageStage}
+          // stage={0}
           myprovider={provider}
           mysigner={signer}
           mycontract={contract}

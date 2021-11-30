@@ -5,8 +5,11 @@ $radius: 0.2rem;
   display: flex;
   left: calc(50% - 35rem);
   width: 70rem;
+  height: 38rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
-
 .connectbutton {
   padding: 1rem;
   font-family: inherit;
@@ -61,6 +64,9 @@ $radius: 0.2rem;
   color: #6a6a6a;
 }
 
+.discord-logo {
+  margin-top: 10px;
+}
 .progress-raised {
   font-size: 16px;
   font-weight: 300;
