@@ -28,7 +28,7 @@ const db = getDatabase();
 const dbRef = ref(db);
 
 function Productpage() {
-  const contractAddress = "0xdC5357D9BB76a57fD2a73BB8a7E60250d90E5CD0";
+  const contractAddress = "0x143abBbF935C084eE2d7e0aF8c8f07B18D106064";
   const [ListOfProduct, setListOfProduct] = useState();
   const [isConnected, setIsConnected] = useState(false);
   const [formIsOpen, setFormIsOpen] = useState(false);
