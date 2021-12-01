@@ -153,13 +153,13 @@ textarea {
 .selected {
   color: $clr-primary;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .selection {
   margin-right: 5px;
   display: flex;
   flex-flow: row;
-  cursor: pointer;
 }
 
 .selection-house {

@@ -157,6 +157,7 @@ function Productmain(props) {
       .cancel_project(props.title)
       .then(() => {
         console.log("Cancel project");
+        setStage(4);
       })
       .catch((error) => {
         alert(error.message);
@@ -213,7 +214,7 @@ function Productmain(props) {
         <div className="camp-desc">{props.desc}</div>
         <img
           src={discordlogo}
-          width="35px"
+          width="24px"
           alt="Discord"
           className="discord-logo"
         />
@@ -239,17 +240,7 @@ function Productmain(props) {
         <div>
           {!isInit && (
             <div className="selection-house">
-              <p onClick={isInvestor} className="selection selected">
-                Investor
-              </p>
-              <p onClick={isInitiator} className="selection">
-                Initiator
-              </p>
-            </div>
-          )}
-          {isInit && (
-            <div className="selection-house">
-              <p onClick={isInvestor} className="selection">
+              <p onClick={isInvestor} className="selection ">
                 Investor
               </p>
               <p onClick={isInitiator} className="selection selected">
@@ -257,9 +248,19 @@ function Productmain(props) {
               </p>
             </div>
           )}
-          <button onClick={testProvider}>TestAndReset</button>
+          {isInit && (
+            <div className="selection-house">
+              <p onClick={isInvestor} className="selection selected">
+                Investor
+              </p>
+              <p onClick={isInitiator} className="selection ">
+                Initiator
+              </p>
+            </div>
+          )}
+          {/* <button onClick={testProvider}>TestAndReset</button>
           <button onClick={increaseStage}>Increase Stage</button>
-          <button onClick={miscTest}>Miscellaneous</button>
+          <button onClick={miscTest}>Miscellaneous</button> */}
         </div>
         <div className="bottom-four">
           {isInit && (

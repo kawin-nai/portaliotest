@@ -6,9 +6,12 @@ $radius: 0.2rem;
   min-width: 100%;
   min-height: 100%;
   background-size: cover;
-  background-position: center;
-  background-image: url("bgtwo.jpg");
+  background-position: center center;
+  // background-image: url("bgtwo.jpg");
+  background-image: url("wave.svg");
   position: absolute;
+  display: flex;
+  flex-direction: column;
   top: 0;
   left: 0;
 }
@@ -22,16 +25,6 @@ $radius: 0.2rem;
   justify-content: flex-end;
 }
 
-// .spacer {
-//   aspect-ratio: 16/10;
-//   width: 100%;
-//   background-repeat: no-repeat;
-//   background-position: center;
-//   background-size: cover;
-// }
-// .layer1 {
-//   background-image: url("blob-scene-haikei.svg");
-// }
 .left-logo {
   display: flex;
   justify-content: flex-end;
@@ -60,35 +53,31 @@ $radius: 0.2rem;
   flex: 1;
 }
 
+.main-body {
+  margin-top: 50px;
+}
+
 #main-title {
   text-align: center;
   font-size: 3em;
-  color: white;
+  color: black;
 }
 
 .main-page-desc {
   text-align: center;
   font-size: 2em;
   color: white;
-  margin: 50px;
+  margin: 100px;
 }
-
-.bg {
-  // padding: 20em;
-  // background-image: url("portalicon.png");
-  // background-repeat: no-repeat;
-  // background-size: 50%;
-  // background-position: center;
-  // z-index: 0;
-  // border: 2px solid black;
-}
-// .footer {
-//   height: 100px;
-//   position: relative;
-// }
 
 .footer-content {
   margin: 30px;
   display: flex;
   flex-direction: row;
+}
+
+.twitter-logo {
+  margin-top: 4px;
+  margin-left: 20px;
+  // background-color: white;
 }
