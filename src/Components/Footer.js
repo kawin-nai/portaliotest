@@ -30,6 +30,9 @@ function Footer() {
           />
         </a>
       </div>
+      <div>
+        <p id="footer-text">Tachyon</p>
+      </div>
     </div>
   );
 }

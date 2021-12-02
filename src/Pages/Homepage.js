@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "../sass/homepage.scss";
 import smalllogo from "../sass/SVG/Portal Logo (4).svg";
+import p1 from "../sass/SVG/Portal Logo (1).svg";
 import Footer from "../Components/Footer";
 
 function Homepage() {
@@ -22,7 +23,8 @@ function Homepage() {
       <div className="main-body">
         <span className="dot"></span>
         <div>
-          <p className="main-page-desc">Background Portal</p>
+          <img src={p1} alt="portalbackground" id="portal-background" />
+          {/* <p className="main-page-desc">Background Portal</p> */}
           <h3 className="main-page-desc">Crowdfunding</h3>
         </div>
       </div>
