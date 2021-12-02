@@ -129,7 +129,7 @@ function Productpage() {
         </div>
 
         <div className="logo-brand">
-          <a href="https://portal-be7b2.web.app/">
+          <a href="/">
             <img src={smalllogo} alt="portal-logl" width="80px" />
           </a>
         </div>

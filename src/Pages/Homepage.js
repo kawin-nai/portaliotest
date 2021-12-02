@@ -22,10 +22,15 @@ function Homepage() {
       <h1 id="main-title">Portal</h1>
       <div className="main-body">
         <span className="dot"></span>
-        <div>
-          <img src={p1} alt="portalbackground" id="portal-background" />
+        <div className="inside-main-body">
+          <img
+            src={p1}
+            alt="portalbackground"
+            id="portal-background"
+            width="500px"
+          />
           {/* <p className="main-page-desc">Background Portal</p> */}
-          <h3 className="main-page-desc">Crowdfunding</h3>
+          <h3 className="main-page-desc">Crowdfunding platform for everyone</h3>
         </div>
       </div>
       <div className="spacer layer1"></div>

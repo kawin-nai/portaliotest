@@ -1,5 +1,6 @@
 $clr-primary: #0086e8;
-$radius: 0.2rem;
+$radius: 1.2rem;
+$small-radius: 0.5rem;
 
 .mainpage {
   display: flex;
@@ -9,6 +10,7 @@ $radius: 0.2rem;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  border-radius: $radius;
 }
 .connectbutton {
   padding: 1rem;
@@ -19,7 +21,7 @@ $radius: 0.2rem;
   border: 2px solid $clr-primary;
   background: transparent;
   color: $clr-primary;
-  border-radius: $radius;
+  border-radius: $small-radius;
   transition: background 100ms ease-in, color 100ms ease-in;
   cursor: pointer;
 
@@ -27,6 +29,12 @@ $radius: 0.2rem;
     background: $clr-primary;
     color: white;
   }
+}
+
+#cancel-button {
+  background-color: red;
+  border-color: red;
+  margin-top: 10px;
 }
 
 .mainimage {
@@ -102,6 +110,11 @@ $radius: 0.2rem;
   flex-flow: row wrap;
 }
 
+.buttons {
+  display: flex;
+  flex-direction: column;
+}
+
 .contribute-section {
   display: flex;
   align-items: center;
@@ -117,6 +130,7 @@ $radius: 0.2rem;
 .contribute-form {
   display: flex;
   align-items: baseline;
+  justify-content: space-between;
   width: 100%;
 }
 
@@ -131,9 +145,10 @@ textarea {
   width: 50%;
   margin-bottom: 0;
   margin-right: 15px;
-  margin-left: 15px;
   height: 40px;
   padding: 5px;
+  border-radius: $small-radius;
+  border-width: 1px;
 }
 
 .initiator-section {
@@ -144,10 +159,11 @@ textarea {
 .min-goal-field {
   height: 38px;
   padding: 5px;
-  margin-bottom: 5px;
   margin-right: 5px;
   font-size: 16px;
   font-weight: 300;
+  border-radius: $small-radius;
+  border-width: 1px;
 }
 
 .selected {
@@ -178,24 +194,20 @@ textarea {
   background-color: $clr-primary;
   border: 2px solid $clr-primary;
   padding: 11px 18px;
-  border-radius: 2px;
+  border-radius: $small-radius;
   color: #ffffff;
   text-align: center;
   min-height: 40px;
 }
 
 .cntr-btn {
-  // width: 50%;
-  margin-bottom: 0;
-  margin-right: 0;
+  margin-top: 10px;
 }
 
 .redeem-vote {
   display: flex;
   margin-top: 10px;
   justify-content: space-between;
-  // align-items: baseline;
-  // width: 71.5%;
 }
 
 .vote-btn {
@@ -210,10 +222,20 @@ textarea {
   background-color: $clr-primary;
   border: 2px solid $clr-primary;
   padding: 11px 18px;
-  border-radius: 2px;
+  border-radius: $small-radius;
   color: #ffffff;
   text-align: center;
   min-height: 40px;
+}
+
+#vote-yes {
+  background-color: green;
+  border-color: green;
+}
+
+#vote-no {
+  background-color: red;
+  border-color: red;
 }
 
 .redeem-cntr-btn {
@@ -224,12 +246,10 @@ textarea {
   margin-left: 14px;
 }
 .vote-cntr-btn {
-  padding-left: 67px;
-  padding-right: 67px;
   margin-bottom: 0;
   margin-right: 0;
 }
 
 .redeem-btn {
-  margin-left: 13px;
+  // margin-left: 13px;
 }

@@ -291,16 +291,10 @@ function Productmain(props) {
           )}
 
           {!isInit && (
-            <div>
+            <div className="buttons">
               <div className="contribute-section">
                 <div className="contr-active">
                   <div className="contribute-form">
-                    <button
-                      className="submit-btn cntr-btn"
-                      onClick={cancelProject}
-                    >
-                      Cancel
-                    </button>
                     <input
                       type="text"
                       min="1.00"
@@ -309,26 +303,45 @@ function Productmain(props) {
                       placeholder="Donation Amount"
                       onChange={createAmountGiven}
                     />
-                    <button className="submit-btn cntr-btn" onClick={pledge}>
+                    <button
+                      className="submit-btn cntr-btn"
+                      id="contribute-button"
+                      onClick={pledge}
+                    >
                       Contribute
                     </button>
                   </div>
                 </div>
               </div>
               <div className="redeem-vote">
-                <button className="vote-btn vote-cntr-btn" onClick={voteYes}>
-                  Vote Yes
-                </button>
-                <button className="vote-btn redeem-cntr-btn" onClick={voteNo}>
-                  Vote No
-                </button>
                 <button
                   className="vote-btn redeem-btn"
                   onClick={customerRedeem}
                 >
                   Redeem
                 </button>
+                <button
+                  className="vote-btn vote-cntr-btn"
+                  id="vote-yes"
+                  onClick={voteYes}
+                >
+                  Vote Yes
+                </button>
+                <button
+                  className="vote-btn vote-cntr-btn"
+                  id="vote-no"
+                  onClick={voteNo}
+                >
+                  Vote No
+                </button>
               </div>
+              <button
+                className="submit-btn cntr-btn"
+                id="cancel-button"
+                onClick={cancelProject}
+              >
+                Cancel
+              </button>
             </div>
           )}
         </div>

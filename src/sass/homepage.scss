@@ -64,6 +64,12 @@ $radius: 0.2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .inside-main-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .dot {
@@ -116,6 +122,16 @@ $radius: 0.2rem;
   margin-top: 4px;
   margin-left: 20px;
   // background-color: white;
+}
+
+.telegram-logo {
+  margin-top: 2px;
+  margin-left: 15px;
+}
+
+.discord-logo {
+  margin-top: 6px;
+  margin-left: 20px;
 }
 
 #footer-text {
