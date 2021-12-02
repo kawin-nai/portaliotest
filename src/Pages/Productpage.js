@@ -9,7 +9,7 @@ import Backdrop from "../Components/Backdrop";
 import Productmain from "../Components/Productmain";
 import { ethers } from "ethers";
 import portalcontract from "../Wallet/portalcontract.json";
-import logo from "../sass/portalicon.png";
+import smalllogo from "../sass/SVG/Portal Logo (4).svg";
 
 const firebaseConfig = {
   apiKey: "AIzaSyByQWcijM778LTJf2B0jdv87BZjmi1cW1g",
@@ -128,8 +128,8 @@ function Productpage() {
 
         {/* <div className="spacer"></div> */}
         <div className="logo-brand">
-          <img src={logo} alt="portal-logl" width="50px" height="40px" />
-          <h3>Portal</h3>
+          <img src={smalllogo} alt="portal-logl" width="80px" />
+          {/* <h3>Portal</h3> */}
         </div>
         {formIsOpen && (
           <Form onClick={closeFormHandlerWithReload} mycontract={contract} />
@@ -181,7 +181,6 @@ function Productpage() {
             })
           : ""}
       </div>
-      <div className="allseeing"></div>
     </div>
   );
 }
