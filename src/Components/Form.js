@@ -58,19 +58,19 @@ function Form(props) {
       minGoal != 0 &&
       goal > minGoal
     ) {
-      set(ref(db, "ProductLists/" + title), {
-        Title: title,
-        Desc: desc,
-        Image: imgurl,
-        Goal: goal,
-        MinGoal: minGoal,
-        Stage: 0,
-        Raised: 0,
-      });
       // console.log(title, desc, imgurl, typeof goal, typeof minGoal);
       await contract
         .createProject(title, "test-desc", goal, minGoal)
         .then(() => {
+          set(ref(db, "ProductLists/" + title), {
+            Title: title,
+            Desc: desc,
+            Image: imgurl,
+            Goal: goal,
+            MinGoal: minGoal,
+            Stage: 0,
+            Raised: 0,
+          });
           props.onClick();
         })
         .catch((error) => {

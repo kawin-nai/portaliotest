@@ -9,6 +9,7 @@ import Backdrop from "../Components/Backdrop";
 import Productmain from "../Components/Productmain";
 import { ethers } from "ethers";
 import portalcontract from "../Wallet/portalcontract.json";
+import portalcontracttwo from "../Wallet/portalcontracttwo.json";
 import smalllogo from "../sass/SVG/Portal Logo (4).svg";
 
 const firebaseConfig = {
@@ -29,7 +30,8 @@ const db = getDatabase();
 const dbRef = ref(db);
 
 function Productpage() {
-  const contractAddress = "0x143abBbF935C084eE2d7e0aF8c8f07B18D106064";
+  // const contractAddress = "0x143abBbF935C084eE2d7e0aF8c8f07B18D106064";
+  const contractAddress = "0xdC5357D9BB76a57fD2a73BB8a7E60250d90E5CD0";
   const [ListOfProduct, setListOfProduct] = useState();
   const [isConnected, setIsConnected] = useState(false);
   const [formIsOpen, setFormIsOpen] = useState(false);
@@ -73,7 +75,8 @@ function Productpage() {
 
     const tempContract = new ethers.Contract(
       contractAddress,
-      portalcontract,
+      // portalcontract,
+      portalcontracttwo,
       tempSigner
     );
     setContract(tempContract);
@@ -118,7 +121,6 @@ function Productpage() {
 
   return (
     <div>
-      {/* {getAllData()} */}
       <div className="navbar-container">
         <div>
           <button className="connectbutton" onClick={addProductHandler}>
@@ -126,10 +128,10 @@ function Productpage() {
           </button>
         </div>
 
-        {/* <div className="spacer"></div> */}
         <div className="logo-brand">
-          <img src={smalllogo} alt="portal-logl" width="80px" />
-          {/* <h3>Portal</h3> */}
+          <a href="https://portal-be7b2.web.app/">
+            <img src={smalllogo} alt="portal-logl" width="80px" />
+          </a>
         </div>
         {formIsOpen && (
           <Form onClick={closeFormHandlerWithReload} mycontract={contract} />

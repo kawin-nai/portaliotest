@@ -61,17 +61,11 @@ function Productmain(props) {
 
   const pledge = async () => {
     // invest
-    // console.log(
-    //   ethers.utils.hexlify(parseInt(amountGiven)),
-    //   typeof ethers.utils.hexlify(parseInt(amountGiven))
-    // );
     const overrides = {
       // to: "0xdC5357D9BB76a57fD2a73BB8a7E60250d90E5CD0",
       value: ethers.utils.hexlify(parseInt(amountGiven)), //400,
     };
 
-    // console.log("Transaction Completed");
-    // addRaised(parseInt(amountGiven));
     await contract
       .contribute(props.title, overrides)
       .then(() => {
@@ -97,7 +91,6 @@ function Productmain(props) {
 
   const launch = async () => {
     // init
-    // await contract.Launch(props.title);
     // console.log("Launch");
     await contract
       .Launch(props.title)
@@ -116,6 +109,7 @@ function Productmain(props) {
       .vote(props.title, true)
       .then(() => {
         console.log("Yes");
+        setStage(2);
       })
       .catch((error) => {
         alert(error.message);
@@ -128,6 +122,7 @@ function Productmain(props) {
       .vote(props.title, false)
       .then(() => {
         console.log("No");
+        setStage(3);
       })
       .catch((error) => {
         alert(error.message);
@@ -164,6 +159,17 @@ function Productmain(props) {
       });
   };
 
+  const customerRedeem = async () => {
+    await contract
+      .customer_redeem(props.title)
+      .then(() => {
+        console.log("Customer Redeem Successful");
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
+
   const testProvider = async () => {
     console.log(provider);
     console.log(signer);
@@ -185,13 +191,11 @@ function Productmain(props) {
     setRaised(0);
   };
 
-  const stageUpdate = () => {};
   const setStage = (e) => {
     // console.log(props.stage);
     teststage = e;
     setOldStage(teststage);
     set(ref(db, "ProductLists/" + props.title + "/Stage"), teststage);
-    // changeStage();
   };
 
   const increaseStage = () => {
@@ -317,6 +321,12 @@ function Productmain(props) {
                 </button>
                 <button className="vote-btn redeem-cntr-btn" onClick={voteNo}>
                   Vote No
+                </button>
+                <button
+                  className="vote-btn redeem-btn"
+                  onClick={customerRedeem}
+                >
+                  Redeem
                 </button>
               </div>
             </div>
