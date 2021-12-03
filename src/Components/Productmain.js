@@ -138,7 +138,7 @@ function Productmain(props) {
   const redeemMoney = async () => {
     // init
     await contract
-      .redeem(props.title, props.mingoal)
+      .redeem(props.title, newMinGoal)
       .then(async () => {
         await set(
           ref(db, "ProductLists/" + props.title + "/MinGoal"),
