@@ -220,7 +220,7 @@ function Productmain(props) {
           src={discordlogo}
           width="24px"
           alt="Discord"
-          className="discord-logo"
+          className="discord-logo-main"
         />
         <div className="camp-progress">
           <div className="progress-raised">
