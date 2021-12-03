@@ -27,7 +27,7 @@ function Homepage() {
             src={p1}
             alt="portalbackground"
             id="portal-background"
-            width="500px"
+            width="400px"
           />
           {/* <p className="main-page-desc">Background Portal</p> */}
           <h3 className="main-page-desc">Crowdfunding platform for everyone</h3>

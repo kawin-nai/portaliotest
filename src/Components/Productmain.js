@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../sass/mainproduct.scss";
-import { ethers } from "ethers";
+import { ethers, BigNumber } from "ethers";
 import { initializeApp } from "firebase/app";
 import {
   Database,
@@ -11,6 +11,8 @@ import {
   get,
 } from "@firebase/database";
 import discordlogo from "../sass/Discord-Logo-Color.svg";
+import twitterlogo from "../sass/Twitter logo/PNG/2021 Twitter logo - blue.png";
+import websitelogo from "../sass/globe.png";
 
 const firebaseConfig = {
   apiKey: "AIzaSyByQWcijM778LTJf2B0jdv87BZjmi1cW1g",
@@ -39,11 +41,14 @@ function Productmain(props) {
   const [oldStage, setOldStage] = useState(props.stage);
   const [newMinGoal, setNewMinGoal] = useState(props.mingoal);
   const [curMinGoal, setCurMinGoal] = useState(props.mingoal);
+  const [remainVal, setRemainVal] = useState();
+  const [hasContr, setHasContr] = useState(0);
   var teststage = oldStage;
   var testraised = curRaised;
   var provider = props.myprovider;
   var signer = props.mysigner;
   var contract = props.mycontract;
+  var value;
 
   const isInvestor = () => {
     setIsInit(false);
@@ -71,6 +76,7 @@ function Productmain(props) {
       .then(() => {
         console.log("Transaction Completed");
         addRaised(parseInt(amountGiven));
+        setHasContr(1);
       })
       .catch((error) => {
         alert(error.message);
@@ -204,9 +210,29 @@ function Productmain(props) {
     set(ref(db, "ProductLists/" + props.title + "/Stage"), teststage);
   };
 
-  const miscTest = () => {
-    console.log(contract.return_isOpen(props.title));
+  const miscTest = async () => {
+    console.log(await contract.return_isOpen(props.title));
   };
+
+  const getRemainVal = async () => {
+    // console.log(await contract.remainingProjectValue(props.title));
+
+    let value = BigNumber.from(
+      await contract.remainingProjectValue(props.title)
+    );
+    console.log(value.toNumber());
+    // console.log(parseInt(value));
+    // setRemainVal(value);
+  };
+
+  useEffect(async () => {
+    let value = BigNumber.from(
+      await contract.remainingProjectValue(props.title)
+    );
+    let valueNumber = value.toNumber();
+    console.log(valueNumber);
+    setRemainVal(valueNumber);
+  }, []);
 
   return (
     <div className="mainpage">
@@ -216,21 +242,38 @@ function Productmain(props) {
       <div className="right-content">
         <div className="camp-title">{props.title}</div>
         <div className="camp-desc">{props.desc}</div>
-        <img
-          src={discordlogo}
-          width="24px"
-          alt="Discord"
-          className="discord-logo-main"
-        />
+        <div className="images">
+          <img
+            src={discordlogo}
+            width="24px"
+            alt="Discord"
+            className="discord-logo-main"
+          />
+          <img
+            src={twitterlogo}
+            alt="Twitter"
+            width="24px"
+            className="twitter-logo-main"
+          />
+          <img
+            src={websitelogo}
+            alt="Website"
+            width="20px"
+            className="website-logo-main"
+          />
+        </div>
+
         <div className="camp-progress">
           <div className="progress-raised">
             <span className="total-amount">{curRaised} HKD </span>
             <span>Raised by backer</span>
           </div>
           <div className="camp-goal">
-            <span>Total Goal: {props.goal} HKD</span>
+            <span>Total Goal: {props.goal} HKD </span>
             <br />
             <span>Min Goal: {curMinGoal} HKD</span>
+            <br />
+            <span>Remaining Value: {remainVal} HKD</span>
           </div>
         </div>
         <div className="cur-stage">
@@ -263,8 +306,9 @@ function Productmain(props) {
             </div>
           )}
           {/* <button onClick={testProvider}>TestAndReset</button>
-          <button onClick={increaseStage}>Increase Stage</button>
-          <button onClick={miscTest}>Miscellaneous</button> */}
+          <button onClick={increaseStage}>Increase Stage</button> */}
+          {/* <button onClick={miscTest}>Miscellaneous</button>
+          <button onClick={getRemainVal}>getVal</button> */}
         </div>
         <div className="bottom-four">
           {isInit && (

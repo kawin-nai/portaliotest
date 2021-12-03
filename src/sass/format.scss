@@ -24,6 +24,15 @@ $radius: 1.2rem;
   padding: 0;
 }
 
+.all-main-page {
+  min-width: 100%;
+  min-height: 100%;
+  background-size: cover;
+  background-color: #f2f7f7;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 .navbar-container {
   display: flex;
   justify-content: space-between;
@@ -208,6 +217,7 @@ body {
   justify-content: space-between;
   cursor: pointer;
   transition: transform 200ms ease-in;
+  background-color: white;
 
   &image {
     height: 16rem;
