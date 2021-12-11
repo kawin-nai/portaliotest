@@ -46,7 +46,6 @@ function Form(props) {
   const createMinGoal = (e) => {
     setMinGoal(parseInt(e.target.value));
   };
-
   const createEntry = async () => {
     if (
       title !== "" &&
