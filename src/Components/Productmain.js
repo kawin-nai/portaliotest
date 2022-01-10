@@ -176,26 +176,26 @@ function Productmain(props) {
       });
   };
 
-  const testProvider = async () => {
-    console.log(provider);
-    console.log(signer);
-    console.log(contract);
-    if (provider == null) {
-      alert("Please log in to Metamask");
-      return;
-    }
-    let blockNo = await provider
-      .getBlockNumber()
-      .then(() => {
-        console.log(blockNo);
-      })
-      .catch((error) => {
-        alert("Something went wrong");
-      });
+  // const testProvider = async () => {
+  //   console.log(provider);
+  //   console.log(signer);
+  //   console.log(contract);
+  //   if (provider == null) {
+  //     alert("Please log in to Metamask");
+  //     return;
+  //   }
+  //   let blockNo = await provider
+  //     .getBlockNumber()
+  //     .then(() => {
+  //       console.log(blockNo);
+  //     })
+  //     .catch((error) => {
+  //       alert("Something went wrong");
+  //     });
 
-    setStage(0);
-    setRaised(0);
-  };
+  //   setStage(0);
+  //   setRaised(0);
+  // };
 
   const setStage = (e) => {
     // console.log(props.stage);
@@ -204,34 +204,35 @@ function Productmain(props) {
     set(ref(db, "ProductLists/" + props.title + "/Stage"), teststage);
   };
 
-  const increaseStage = () => {
-    teststage++;
-    setOldStage(teststage);
-    set(ref(db, "ProductLists/" + props.title + "/Stage"), teststage);
-  };
+  // const increaseStage = () => {
+  //   teststage++;
+  //   setOldStage(teststage);
+  //   set(ref(db, "ProductLists/" + props.title + "/Stage"), teststage);
+  // };
 
-  const miscTest = async () => {
-    console.log(await contract.return_isOpen(props.title));
-  };
+  // const miscTest = async () => {
+  //   console.log(await contract.return_isOpen(props.title));
+  // };
 
-  const getRemainVal = async () => {
-    // console.log(await contract.remainingProjectValue(props.title));
+  // const getRemainVal = async () => {
+  //   // console.log(await contract.remainingProjectValue(props.title));
 
-    let value = BigNumber.from(
-      await contract.remainingProjectValue(props.title)
-    );
-    console.log(value.toNumber());
-    // console.log(parseInt(value));
-    // setRemainVal(value);
-  };
+  //   let value = BigNumber.from(
+  //     await contract.remainingProjectValue(props.title)
+  //   );
+  //   console.log(value.toNumber());
+  //   // console.log(parseInt(value));
+  //   // setRemainVal(value);
+  // };
 
   useEffect(async () => {
-    let value = BigNumber.from(
-      await contract.remainingProjectValue(props.title)
-    );
-    let valueNumber = value.toNumber();
-    console.log(valueNumber);
-    setRemainVal(valueNumber);
+    // let value = BigNumber.from(
+    //   await contract.remainingProjectValue(props.title)
+    // );
+    // let valueNumber = value.toNumber();
+    // console.log(valueNumber);
+    // setRemainVal(valueNumber);
+    setRemainVal(0);
   }, []);
 
   return (
