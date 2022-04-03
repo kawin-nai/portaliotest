@@ -9,7 +9,7 @@ function Footer() {
   return (
     <div className="footer">
       <div className="footer-content">
-        <a href="https://github.com/qazseee" target="_blank">
+        {/* <a href="https://github.com/qazseee" target="_blank">
           <img src={githublogo} alt="github1" />
         </a>
         <a href="https://twitter.com" target="_blank">
@@ -46,7 +46,33 @@ function Footer() {
             width="32px"
             className="discord-logo"
           />
-        </a>
+        </a> */}
+
+        <img src={githublogo} alt="github1" />
+        <img
+          src={twitterlogo}
+          alt="twitter"
+          width="32px"
+          className="twitter-logo"
+        />
+        <img
+          src={linkedinlogo}
+          alt="linkedin"
+          width="32px"
+          className="twitter-logo"
+        />
+        <img
+          src={telegramlogo}
+          alt="telegramlogo"
+          width="32px"
+          className="telegram-logo"
+        />
+        <img
+          src={discordlogo}
+          alt="discordlogo"
+          width="32px"
+          className="discord-logo"
+        />
       </div>
       <div>
         <p id="footer-text">Tachyon</p>

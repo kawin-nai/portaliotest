@@ -105,7 +105,7 @@ function Form(props) {
           ></input> */}
           <textarea
             name="description"
-            id=""
+            // id=""
             cols="52"
             rows="10"
             id="desc-text-area"
