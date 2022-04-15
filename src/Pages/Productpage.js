@@ -30,8 +30,9 @@ const db = getDatabase();
 const dbRef = ref(db);
 
 function Productpage() {
-  // const contractAddress = "0x7ba56e5CcAdF1592180Ea7414673e475c39EF808";
-  const contractAddress = "0x089ab39F3f9B0dC678aF2f7f572383E0d2D3C6ee";
+  // const contractAddress = "0x089ab39F3f9B0dC678aF2f7f572383E0d2D3C6ee";
+  // const contractAddress = "0x4fbeeb46E0d3B15572eEA1214E3279F1a5182cA5";
+  const contractAddress = "0x2C27eCA09F61c2474E15c80947d00142D4aB9F14";
   const [ListOfProduct, setListOfProduct] = useState();
   const [isConnected, setIsConnected] = useState(false);
   const [formIsOpen, setFormIsOpen] = useState(false);
@@ -75,8 +76,8 @@ function Productpage() {
 
     const tempContract = new ethers.Contract(
       contractAddress,
-      // portalcontract,
-      portalcontracttwo,
+      portalcontract,
+      // portalcontracttwo,
       tempSigner
     );
     setContract(tempContract);
