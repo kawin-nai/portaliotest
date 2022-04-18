@@ -261,10 +261,12 @@ contract project {
     }
 }
 
-// This smart contract is a standard ERC-20 from Openzeppelin, so the there wil be no comment in this part
+// This smart contract is a standard ERC-20 from Openzeppelin
 contract ERC20 is Context, IERC20, IERC20Metadata {
+  
+    // use mapping to store the balance
     mapping(address => uint256) private _balances;
-
+    // use mapping to store the allowance balance
     mapping(address => mapping(address => uint256)) private _allowances;
 
     uint256 private _totalSupply;
@@ -272,54 +274,55 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
     string private _name;
     string private _symbol;
 
-
+    //constuctor to assign name and synbol when creating a contract
     constructor(string memory name_, string memory symbol_) {
         _name = name_;
         _symbol = symbol_;
     }
 
-
+    //function to return _name
     function name() public view virtual override returns (string memory) {
         return _name;
     }
 
-
+    //function to return _symbol
     function symbol() public view virtual override returns (string memory) {
         return _symbol;
     }
 
-
+    //function to retrun decimal point
     function decimals() public view virtual override returns (uint8) {
         return 18;
     }
 
-
+    //function to retrun total supply of the project
     function totalSupply() public view virtual override returns (uint256) {
         return _totalSupply;
     }
 
-
+    //function to retrun the balance of the specific account
     function balanceOf(address account) public view virtual override returns (uint256) {
         return _balances[account];
     }
 
-
+    //function to transfer money
     function transfer(address recipient, uint256 amount) public virtual override returns (bool) {
         _transfer(_msgSender(), recipient, amount);
         return true;
     }
 
-
+    //function to see the allowance of the account toward a specific address
     function allowance(address owner, address spender) public view virtual override returns (uint256) {
         return _allowances[owner][spender];
     }
-
+    
+    //function to approve other to use your token
     function approve(address spender, uint256 amount) public virtual override returns (bool) {
         _approve(_msgSender(), spender, amount);
         return true;
     }
 
-
+    //function to transfer money
     function transferFrom(
         address sender,
         address recipient,
@@ -336,13 +339,13 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
         return true;
     }
 
-
+    //function to increase the apporved amount to use your ERC-20 token
     function increaseAllowance(address spender, uint256 addedValue) public virtual returns (bool) {
         _approve(_msgSender(), spender, _allowances[_msgSender()][spender] + addedValue);
         return true;
     }
 
-
+    //function to decrease the apporved amount to use your ERC-20 token
     function decreaseAllowance(address spender, uint256 subtractedValue) public virtual returns (bool) {
         uint256 currentAllowance = _allowances[_msgSender()][spender];
         require(currentAllowance >= subtractedValue, "ERC20: decreased allowance below zero");
@@ -353,7 +356,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
         return true;
     }
 
-
+    //helper function to transfer money
     function _transfer(
         address sender,
         address recipient,
@@ -376,7 +379,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
         _afterTokenTransfer(sender, recipient, amount);
     }
 
-
+    //function to mint the ERC-20 project token
     function _mint(address account, uint256 amount) public virtual {
         require(account != address(0), "ERC20: mint to the zero address");
         // require(msg.sender == 0x38bfCA429C719653c7BE66d58dd3bc30971A3C9D);
@@ -390,7 +393,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
         _afterTokenTransfer(address(0), account, amount);
     }
 
-
+    //function to burn the ERC-20 project token
     function _burn(address account, uint256 amount) public virtual {
         require(account != address(0), "ERC20: burn from the zero address");
 
@@ -408,7 +411,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
         _afterTokenTransfer(account, address(0), amount);
     }
 
-
+    //helper function to allow other to use your ERC-20 token
     function _approve(
         address owner,
         address spender,
@@ -421,14 +424,14 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
         emit Approval(owner, spender, amount);
     }
 
-
+    //helper function to check the transfer process
     function _beforeTokenTransfer(
         address from,
         address to,
         uint256 amount
     ) internal virtual {}
 
-
+    //helper function to check the transfer process
     function _afterTokenTransfer(
         address from,
         address to,
